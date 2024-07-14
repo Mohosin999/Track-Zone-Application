@@ -1,19 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { addMinutes } from "date-fns";
 
-// Initial object
-const init = {
-  id: "",
-  title: "",
-  timezone: {
-    type: "",
-    offset: "",
-  },
-  date_utc: null,
-  date: null,
-};
-
-// Timezone offset
 const TIMEZONE_OFFSET = {
   PST: -7 * 60,
   EST: -4 * 60,
@@ -22,31 +9,50 @@ const TIMEZONE_OFFSET = {
   MST: -6 * 60,
 };
 
+/**
+ * A custom React hook that provides a real-time clock with timezone support.
+ *
+ * @param {string} timezone - The timezone to display the clock in. If not provided, the local timezone will be used.
+ * @param {number} offset - The offset in minutes from UTC for the provided timezone. If not provided, it will be calculated based on the timezone.
+ * @returns {Object} An object containing the current date, UTC date, offset, and timezone.
+ */
 const useClock = (timezone, offset) => {
-  const [state, setState] = useState({ ...init });
+  const [localDate, setLocalDate] = useState(null);
+  const [localTimezone, setLocalTimezone] = useState(null);
+  const [localOffset, setLocalOffset] = useState(0);
   const [utc, setUtc] = useState(null);
 
-  // Logic for get UTC time.
+  // Effect to initialize the UTC date and local timezone offset
   useEffect(() => {
     let d = new Date();
-    const localOffset = d.getTimezoneOffset();
-    d = addMinutes(d, localOffset);
+    const lo = d.getTimezoneOffset();
+    d = addMinutes(d, lo);
     setUtc(d);
+    setLocalOffset(lo);
   }, []);
 
-  // Convert time based on difference timezone and offset.
+  // Effect to update the local date based on the provided timezone or local timezone
   useEffect(() => {
-    if (utc !== null && timezone) {
-      offset = TIMEZONE_OFFSET[timezone] ?? offset;
-      const newUtc = addMinutes(utc, offset);
-      setState({ ...state, date_utc: utc, date: newUtc });
-    } else {
-      setState({ ...state, date_utc: utc, date: utc });
+    if (utc !== null) {
+      if (timezone) {
+        offset = TIMEZONE_OFFSET[timezone] ?? offset;
+        const newUtc = addMinutes(utc, offset);
+        setLocalDate(newUtc);
+      } else {
+        const newUtc = addMinutes(utc, -localOffset);
+        const dateStrArr = newUtc.toUTCString().split(" ");
+        setLocalDate(newUtc);
+        setLocalTimezone(dateStrArr.pop());
+      }
     }
-  }, [utc]);
+  }, [utc, timezone, offset]);
 
+  // Return the current date, UTC date, offset, and timezone
   return {
-    clock: state,
+    date: localDate,
+    date_utc: utc,
+    offset: offset || -localOffset,
+    timezone: timezone || localTimezone,
   };
 };
 
