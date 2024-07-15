@@ -14,6 +14,8 @@ const ClockActions = ({ local = false, clock, updateClock }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isCreate, setIsCreate] = useState(false);
 
+  console.log("clock action local --> ", local);
+
   const handleClock = (values) => {
     console.log(values);
   };
@@ -33,7 +35,7 @@ const ClockActions = ({ local = false, clock, updateClock }) => {
           <ClockForm
             handleClock={updateClock}
             edit={true}
-            // title={!local}
+            title={!local}
             values={clock}
           />
         </>

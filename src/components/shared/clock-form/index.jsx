@@ -21,6 +21,8 @@ const ClockForm = ({
   // State for form values
   const [formValues, setFormValues] = useState({ ...values });
 
+  console.log("clock form local --> ", title);
+
   // Update offset when timezone changes
   useEffect(() => {
     if (TIMEZONE_OFFSET[formValues.timezone]) {
@@ -62,7 +64,7 @@ const ClockForm = ({
           name="title"
           value={formValues.title}
           onChange={handleChange}
-          // disabled={!title}
+          disabled={!title}
         />
       </div>
 
