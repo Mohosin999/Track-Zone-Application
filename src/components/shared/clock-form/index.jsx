@@ -6,7 +6,7 @@ import { getOffset } from "../../../utils/timezone";
  * ClockForm component for creating and editing clocks.
  *
  * @param {Object} values - Initial form values
- * @param {Function} handleClock - Callback function to handle form submission
+ * @param {function} handleClock - Callback function to handle form submission
  * @param {Boolean} title - Flag to enable/disable title input
  * @param {Boolean} edit - Flag to indicate edit mode
  *
