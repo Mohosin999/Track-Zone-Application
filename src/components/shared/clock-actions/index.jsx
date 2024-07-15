@@ -25,7 +25,7 @@ const ClockActions = ({ local = false, clock, updateClock }) => {
   const handleChange = (e) => {
     let { name, value } = e.target;
     if (name === "offset") {
-      value = parseInt(value) * 60; // Convert offset from minutes to seconds
+      value = Number(value) * 60; // Convert offset from minutes to seconds
     }
     updateClock({
       [name]: value, // Update the clock object with the new value
