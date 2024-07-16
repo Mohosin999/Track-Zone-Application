@@ -10,7 +10,13 @@ import ClockForm from "../clock-form";
  *
  * @returns {JSX.Element} - ClockActions component
  */
-const ClockActions = ({ local = false, clock, updateClock, createClock }) => {
+const ClockActions = ({
+  local = false,
+  clock,
+  updateClock,
+  createClock,
+  deleteClock,
+}) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isCreate, setIsCreate] = useState(false);
 
@@ -24,7 +30,7 @@ const ClockActions = ({ local = false, clock, updateClock, createClock }) => {
       {local ? (
         <button onClick={() => setIsCreate(!isCreate)}>Create</button>
       ) : (
-        <button>Delete</button>
+        <button onClick={() => deleteClock(clock.id)}>Delete</button>
       )}
 
       {isEdit && (
