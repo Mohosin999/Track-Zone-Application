@@ -42,3 +42,13 @@ export const mapStateToKeys = (state, key) => {
     return acc;
   }, {});
 };
+
+// Object deep clone function
+export const deepClone = (obj) => {
+  return JSON.parse(JSON.stringify(obj));
+};
+
+// Function to check the object is empty or not
+export const isObjEmpty = (obj) => {
+  return Object.keys(obj).length === 0;
+};
