@@ -42,8 +42,8 @@ const App = () => {
 
   // Function for delete clock
   const deleteClock = (id) => {
-    const updatedClock = clocks.filter((clock) => clock.id !== id);
-    setClocks(updatedClock);
+    const deletedClocks = clocks.filter((clock) => clock.id !== id);
+    setClocks(deletedClocks);
   };
 
   return (
@@ -53,7 +53,12 @@ const App = () => {
         updateClock={updateLocalClock}
         createClock={createClock}
       />
-      <ClockList />
+      <ClockList
+        clocks={clocks}
+        localClock={localClock.date}
+        updateClock={updateClock}
+        deleteClock={deleteClock}
+      />
     </div>
   );
 };
