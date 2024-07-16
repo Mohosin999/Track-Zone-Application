@@ -61,9 +61,60 @@ const useForm = ({ init, validate }) => {
     };
   };
 
+  const handleFocus = (e) => {
+    const { name } = e.target;
+
+    const oldState = deepClone(state);
+    oldState[name].focused = true;
+
+    if (!oldState[name].touched) {
+      oldState[name].touched = true;
+    }
+
+    setState(oldState);
+  };
+
+  const handleBlur = (e) => {
+    const key = e.target.name;
+
+    const { errors } = getErrors();
+    const oldState = deepClone(state);
+
+    if (oldState[key].touched && errors[key]) {
+      oldState[key].error = errors[key];
+    } else {
+      oldState[key].error = "";
+    }
+
+    oldState[key].focused = false;
+    setState(oldState);
+  };
+
+  const handleSubmit = (e, cb) => {
+    e.preventDefault();
+    const { errors, hasError, values } = getErrors();
+
+    cb({
+      hasError,
+      errors,
+      values,
+      touched: mapStateToKeys(state, "touched"),
+      focused: mapStateToKeys(state, "focused"),
+    });
+  };
+
+  const clear = () => {
+    const newState = mapValuesToState(init, true);
+    setState(newState);
+  };
+
   return {
     formState: state,
     handleChange,
+    handleFocus,
+    handleBlur,
+    handleSubmit,
+    clear,
   };
 };
 
