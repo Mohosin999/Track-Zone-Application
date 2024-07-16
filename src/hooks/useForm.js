@@ -17,22 +17,27 @@ const useForm = ({ init, validate }) => {
   const [state, setState] = useState(mapValuesToState(init));
 
   const handleChange = (e) => {
-    const { name: key, value } = e.target;
+    let { name, value } = e.target;
+
+    if (name === "offset") {
+      value = Number(value) * 60; // Convert offset from minutes to seconds
+    }
 
     const oldState = deepClone(state);
     if (type === "checkbox") {
-      oldState[key].value = "checked";
+      oldState[name].value = "checked";
     } else {
-      oldState[key].value = value;
+      oldState[name].value = value;
     }
 
     const { errors } = getErrors();
 
-    if (oldState[key].touched && errors[key]) {
-      oldState[key].error = errors[key];
+    if (oldState[name].touched && errors[name]) {
+      oldState[name].error = errors[name];
     } else {
-      oldState[key].error = "";
+      oldState[name].error = "";
     }
+
     setState(oldState);
   };
 
