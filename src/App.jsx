@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { generate } from "shortid";
 import ClockList from "./components/clock-list";
 import LocalClock from "./components/local-clock";
 
@@ -12,14 +12,18 @@ const LOCAL_CLOCK_INIT = {
 
 const App = () => {
   const [localClock, setLocalClock] = useState({ ...LOCAL_CLOCK_INIT });
+  const [clocks, setClocks] = useState([]);
 
-  // Function for state lifting
+  // Update clock function
   const updateLocalClock = (data) => {
     setLocalClock({
       ...localClock,
       ...data,
     });
   };
+
+  // Create clock function
+  const createClock = (clock) => {};
 
   return (
     <div>

@@ -10,14 +10,12 @@ import ClockForm from "../clock-form";
  *
  * @returns {JSX.Element} - ClockActions component
  */
-const ClockActions = ({ local = false, clock, updateClock }) => {
+const ClockActions = ({ local = false, clock, updateClock, createClock }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isCreate, setIsCreate] = useState(false);
 
-  console.log("clock action local --> ", local);
-
   const handleClock = (values) => {
-    console.log(values);
+    createClock(values); // State lifting
   };
 
   return (

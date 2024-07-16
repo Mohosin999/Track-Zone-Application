@@ -11,7 +11,7 @@ import ClockActions from "../shared/clock-actions";
  *
  * @returns {JSX.Element} - LocalClock component
  */
-const LocalClock = ({ clock, updateClock }) => {
+const LocalClock = ({ clock, updateClock, createClock }) => {
   // Custom hook to get the current date, timezone, and offset based on the provided timezone and offset
   const { date, timezone, offset } = useClock(clock.timezone, clock.offset);
 
@@ -32,7 +32,12 @@ const LocalClock = ({ clock, updateClock }) => {
           title={clock.title}
         />
       )}
-      <ClockActions clock={clock} updateClock={updateClock} local={true} />
+      <ClockActions
+        clock={clock}
+        updateClock={updateClock}
+        createClock={createClock}
+        local={true}
+      />
     </div>
   );
 };
