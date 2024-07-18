@@ -2,6 +2,8 @@ import { useState } from "react";
 import { generate } from "shortid";
 import ClockList from "./components/clock-list";
 import LocalClock from "./components/local-clock";
+import EventList from "./components/event-list";
+// import EventForm from "./components/shared/event-form";
 
 const LOCAL_CLOCK_INIT = {
   title: "My Clock",
@@ -59,6 +61,8 @@ const App = () => {
         updateClock={updateClock}
         deleteClock={deleteClock}
       />
+      {/* <EventForm /> */}
+      {/* <EventList /> */}
     </div>
   );
 };
