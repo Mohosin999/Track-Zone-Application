@@ -1,15 +1,35 @@
-// import React, { useState } from "react";
+// import React, { useEffect, useState } from "react";
 
-// const EventForm = ({ clockId, addEvent }) => {
-//   const [event, setEvent] = useState({
+// const EventForm = ({
+//   clockId,
+//   event,
+//   addEvent,
+//   updateEvent,
+//   isEdit,
+//   setIsEdit,
+//   isCreateEvent,
+//   setIsCreateEvent,
+// }) => {
+//   const [formData, setFormData] = useState({
 //     title: "",
 //     description: "",
 //     clockId: clockId,
 //   });
 
+//   // useEffect(() => {
+//   //   if (isEdit && event) {
+//   //     setFormData({
+//   //       id: event.id,
+//   //       title: event.title,
+//   //       description: event.description,
+//   //       clockId: event.clockId,
+//   //     });
+//   //   }
+//   // }, []);
+
 //   const handleChange = (e) => {
 //     const { name, value } = e.target;
-//     setEvent((prev) => ({
+//     setFormData((prev) => ({
 //       ...prev,
 //       [name]: value,
 //     }));
@@ -17,8 +37,15 @@
 
 //   const handleSubmit = (e) => {
 //     e.preventDefault();
-//     addEvent(event);
-//     setEvent({ title: "", description: "", clockId: clockId });
+//     if (isEdit) {
+//       updateEvent(formData, formData.id);
+//       setFormData({ title: "", description: "", clockId: clockId });
+//       setIsEdit(!isEdit);
+//     } else {
+//       addEvent(formData);
+//       setFormData({ title: "", description: "", clockId: clockId });
+//       setIsCreateEvent(!isCreateEvent);
+//     }
 //   };
 
 //   return (
@@ -26,7 +53,7 @@
 //       <input
 //         type="text"
 //         name="title"
-//         value={event.title}
+//         value={formData.title}
 //         onChange={handleChange}
 //         placeholder="Event Title"
 //         required
@@ -34,7 +61,7 @@
 //       <input
 //         type="text"
 //         name="description"
-//         value={event.description}
+//         value={formData.description}
 //         onChange={handleChange}
 //         placeholder="Event Description"
 //         required
@@ -46,18 +73,29 @@
 
 // export default EventForm;
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const EventForm = ({ clockId, addEvent }) => {
-  const [event, setEvent] = useState({
+const EventForm = ({ clockId, event, addEvent, updateEvent }) => {
+  const [formData, setFormData] = useState({
     title: "",
     description: "",
     clockId: clockId,
   });
 
+  useEffect(() => {
+    if (event) {
+      setFormData({
+        id: event.id,
+        title: event.title,
+        description: event.description,
+        clockId: event.clockId,
+      });
+    }
+  }, [event]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEvent((prev) => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -65,8 +103,12 @@ const EventForm = ({ clockId, addEvent }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addEvent(event);
-    setEvent({ title: "", description: "", clockId: clockId });
+    if (event && event.id) {
+      updateEvent(formData);
+    } else {
+      addEvent(formData);
+    }
+    setFormData({ title: "", description: "", clockId: clockId });
   };
 
   return (
@@ -74,20 +116,21 @@ const EventForm = ({ clockId, addEvent }) => {
       <input
         type="text"
         name="title"
-        value={event.title}
+        value={formData.title}
         onChange={handleChange}
         placeholder="Event Title"
+        // readOnly={!!event} // Make title read-only if editing
         required
       />
       <input
         type="text"
         name="description"
-        value={event.description}
+        value={formData.description}
         onChange={handleChange}
         placeholder="Event Description"
         required
       />
-      <button type="submit">Add Event</button>
+      <button type="submit">{event ? "Update Event" : "Add Event"}</button>
     </form>
   );
 };

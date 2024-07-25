@@ -1,26 +1,44 @@
-// import React from "react";
+// import { useState } from "react";
+// import useEvents from "../../hooks/useEvents";
+// import EventListItem from "./event-list-item";
 
-// const EventList = ({ getEvents, deleteEvent }) => {
-//   const events = getEvents(true);
+// const EventList = ({ clockId, events, updateEvent, deleteEvent }) => {
+//   const [isCreateEvent, setIsCreateEvent] = useState(false);
+//   const [toggleEvent, setToggleEvent] = useState(true);
+
+//   const { addEvent, deleteEvent, getEventsByClockId, updateEvent } =
+//     useEvents();
+//   const events = getEventsByClockId(clock.id);
 
 //   return (
 //     <div>
-//       <h2>Event List</h2>
+//       <div style={{ marginLeft: "50%" }}>
+//         <button
+//           style={{ marginRight: "8px" }}
+//           onClick={() => setIsCreateEvent(!isCreateEvent)}
+//         >
+//           Create Event
+//         </button>
+//         <button
+//           onClick={() => setToggleEvent(!toggleEvent)}
+//           disabled={events.length === 0}
+//         >
+//           Toggle Event
+//         </button>
+//       </div>
+
 //       <ul>
 //         {events.length === 0 ? (
 //           <h3>There is no event yet</h3>
 //         ) : (
 //           events.map((event) => (
-//             <li key={event.id}>
-//               <h3>{event.title}</h3>
-//               <p>{event.description}</p>
-//               <p>Clock ID: {event.clockId}</p>
-//               <button
-//                 onClick={() => deleteEvent(`${event.clockId}|${event.id}`)}
-//               >
-//                 Delete
-//               </button>
-//             </li>
+//             <EventListItem
+//               key={event.id}
+//               clockId={clockId}
+//               event={event}
+//               updateEvent={updateEvent}
+//               deleteEvent={deleteEvent}
+//             />
 //           ))
 //         )}
 //       </ul>
@@ -30,29 +48,41 @@
 
 // export default EventList;
 
-import React from "react";
+import { useState } from "react";
+import useEvents from "../../hooks/useEvents";
+import EventListItem from "./event-list-item";
+import EventActions from "../shared/event-actions";
 
-const EventList = ({ clockId, getEventsByClockId, deleteEvent }) => {
+const EventList = ({ clockId }) => {
+  // const [isCreateEvent, setIsCreateEvent] = useState(false);
+  // const [toggleEvent, setToggleEvent] = useState(true);
+
+  const { addEvent, deleteEvent, getEventsByClockId, updateEvent } =
+    useEvents();
   const events = getEventsByClockId(clockId);
 
   return (
     <div>
-      <h2>Event List</h2>
+      <EventActions
+        clockId={clockId}
+        addEvent={addEvent}
+        deleteEvent={deleteEvent}
+      />
       <ul>
         {events.length === 0 ? (
           <h3>There is no event yet</h3>
         ) : (
           events.map((event) => (
-            <li key={event.id}>
-              <h3>{event.title}</h3>
-              <p>{event.description}</p>
-              <p>Clock ID: {event.clockId}</p>
-              <button
-                onClick={() => deleteEvent(`${event.clockId}|${event.id}`)}
-              >
-                Delete
-              </button>
-            </li>
+            <EventListItem
+              key={event.id}
+              clockId={clockId}
+              event={event}
+              addEvent={addEvent}
+              updateEvent={updateEvent}
+              deleteEvent={deleteEvent}
+              // isCreateEvent={isCreateEvent}
+              // setIsCreateEvent={setIsCreateEvent}
+            />
           ))
         )}
       </ul>

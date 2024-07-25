@@ -1,4 +1,4 @@
-// import { useEffect, useState } from "react";
+// import { useState } from "react";
 // import { formatDistance } from "date-fns";
 // import useClock from "../../hooks/useClock";
 // import useTimer from "../../hooks/useTimer";
@@ -7,38 +7,26 @@
 // import EventForm from "../shared/event-form";
 // import EventList from "../event-list";
 // import useEvents from "../../hooks/useEvents";
-// // import { EventsProvider } from "../event-context";
 
 // const ClockListItem = ({ clock, updateClock, deleteClock, localClock }) => {
-//   const [eventsState, setEventsState] = useState(() => {
-//     const savedEvents = localStorage.getItem("events");
-//     return savedEvents ? JSON.parse(savedEvents) : {};
-//   });
+//   /** =====================================
+//    *        Event Related Start
+//    ====================================== */
+//   const [isCreateEvent, setIsCreateEvent] = useState(false);
+//   const [toggleEvent, setToggleEvent] = useState(true);
 
-//   const eventsHook = useEvents(eventsState);
+//   const { addEvent, deleteEvent, getEventsByClockId, updateEvent } =
+//     useEvents();
+//   const events = getEventsByClockId(clock.id);
 
-//   useEffect(() => {
-//     localStorage.setItem("events", JSON.stringify(eventsHook.events));
-//   }, [eventsHook.events]);
+//   /** =====================================
+//    *        Event Related End
+//    ====================================== */
 
 //   const { date } = useClock(clock.timezone, clock.offset);
 //   const timer = useTimer(date);
 
 //   if (!date || !timer) return null;
-
-//   const addEvent = (event) => {
-//     eventsHook.addEvent(event);
-//     setEventsState(eventsHook.events);
-//   };
-
-//   const deleteEvent = (id) => {
-//     eventsHook.deleteEvent(id);
-//     setEventsState(eventsHook.events);
-//   };
-
-//   const getEvents = (isArray = false) => {
-//     return eventsHook.getEvents(isArray);
-//   };
 
 //   return (
 //     <div>
@@ -57,10 +45,43 @@
 //       {/* Time distance */}
 //       <h3>Time difference: {formatDistance(localClock, date)}</h3>
 
+//       {/* ==========================================================================
+//                               Event Management
+//       ====================================================================== */}
 //       <div>
-//         <h1>Event Management</h1>
-//         <EventForm clockId={clock.id} addEvent={addEvent} />
-//         <EventList getEvents={getEvents} deleteEvent={deleteEvent} />
+//         <div style={{ marginLeft: "50%" }}>
+//           <button
+//             style={{ marginRight: "8px" }}
+//             onClick={() => setIsCreateEvent(!isCreateEvent)}
+//           >
+//             Create Event
+//           </button>
+//           <button
+//             onClick={() => setToggleEvent(!toggleEvent)}
+//             disabled={events.length === 0}
+//           >
+//             Toggle Event
+//           </button>
+//         </div>
+
+//         {isCreateEvent && (
+//           // <h1>Event Management</h1>
+//           <EventForm
+//             clockId={clock.id}
+//             addEvent={addEvent}
+//             isCreateEvent={isCreateEvent}
+//             setIsCreateEvent={setIsCreateEvent}
+//           />
+//         )}
+
+//         {toggleEvent && (
+//           <EventList
+//             clockId={clock.id}
+//             events={events}
+//             deleteEvent={deleteEvent}
+//             updateEvent={updateEvent}
+//           />
+//         )}
 //       </div>
 //     </div>
 //   );
@@ -68,7 +89,7 @@
 
 // export default ClockListItem;
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { formatDistance } from "date-fns";
 import useClock from "../../hooks/useClock";
 import useTimer from "../../hooks/useTimer";
@@ -79,28 +100,24 @@ import EventList from "../event-list";
 import useEvents from "../../hooks/useEvents";
 
 const ClockListItem = ({ clock, updateClock, deleteClock, localClock }) => {
-  const eventsHook = useEvents();
+  /** =====================================
+   *        Event Related Start
+   ====================================== */
+  // const [isCreateEvent, setIsCreateEvent] = useState(false);
+  // const [toggleEvent, setToggleEvent] = useState(true);
 
-  useEffect(() => {
-    localStorage.setItem("events", JSON.stringify(eventsHook.events));
-  }, [eventsHook.events]);
+  // const { addEvent, deleteEvent, getEventsByClockId, updateEvent } =
+  //   useEvents();
+  // const events = getEventsByClockId(clock.id);
+
+  /** =====================================
+   *        Event Related End
+   ====================================== */
 
   const { date } = useClock(clock.timezone, clock.offset);
   const timer = useTimer(date);
 
   if (!date || !timer) return null;
-
-  const addEvent = (event) => {
-    eventsHook.addEvent(event);
-  };
-
-  const deleteEvent = (id) => {
-    eventsHook.deleteEvent(id);
-  };
-
-  const getEventsByClockId = (clockId) => {
-    return eventsHook.getEventsByClockId(clockId);
-  };
 
   return (
     <div>
@@ -119,14 +136,44 @@ const ClockListItem = ({ clock, updateClock, deleteClock, localClock }) => {
       {/* Time distance */}
       <h3>Time difference: {formatDistance(localClock, date)}</h3>
 
+      {/* ==========================================================================
+                              Event Management
+      ====================================================================== */}
       <div>
-        <h1>Event Management</h1>
-        <EventForm clockId={clock.id} addEvent={addEvent} />
-        <EventList
-          clockId={clock.id}
-          getEventsByClockId={getEventsByClockId}
-          deleteEvent={deleteEvent}
-        />
+        {/* <div style={{ marginLeft: "50%" }}>
+          <button
+            style={{ marginRight: "8px" }}
+            onClick={() => setIsCreateEvent(!isCreateEvent)}
+          >
+            Create Event
+          </button>
+          <button
+            onClick={() => setToggleEvent(!toggleEvent)}
+            disabled={events.length === 0}
+          >
+            Toggle Event
+          </button>
+        </div> */}
+
+        {/* {isCreateEvent && (
+          // <h1>Event Management</h1>
+          <EventForm
+            clockId={clock.id}
+            addEvent={addEvent}
+            isCreateEvent={isCreateEvent}
+            setIsCreateEvent={setIsCreateEvent}
+          />
+        )}
+
+        {toggleEvent && (
+          <EventList
+            clockId={clock.id}
+            events={events}
+            deleteEvent={deleteEvent}
+            updateEvent={updateEvent}
+          />
+        )} */}
+        <EventList clockId={clock.id} />
       </div>
     </div>
   );
