@@ -1,9 +1,21 @@
+// import React from "react";
+// import { useNavigate } from "react-router-dom";
+// import styled from "styled-components";
 // import ClockListItem from "./clock-list-item";
 
 // const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
+//   const navigate = useNavigate();
+
+//   const handleViewEvents = () => {
+//     navigate("/events");
+//   };
+
 //   return (
 //     <div>
-//       <h3>Other Clocks</h3>
+//       <Header>
+//         <h3>Other Clocks</h3>
+//         <EventsButton onClick={handleViewEvents}>Your Events</EventsButton>
+//       </Header>
 //       <hr />
 
 //       {clocks.length === 0 ? (
@@ -25,34 +37,38 @@
 //   );
 // };
 
+// const Header = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   cursor: pointer;
+// `;
+
+// const EventsButton = styled.h4`
+//   color: blue;
+//   text-decoration: underline;
+//   cursor: pointer;
+// `;
+
 // export default ClockList;
 
-import { useState } from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import ClockListItem from "./clock-list-item";
-import useEvents from "../../hooks/useEvents";
-import Modal from "./modal";
 
 const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { getEvents } = useEvents();
+  const navigate = useNavigate();
 
-  const allEvents = getEvents(true);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleViewEvents = () => {
+    navigate("/events");
   };
 
   return (
-    <div className={isModalOpen ? "blur" : ""}>
-      <GlobalStyle isModalOpen={isModalOpen} />
+    <div>
       <Header>
         <h3>Other Clocks</h3>
-        <EventsButton onClick={handleOpenModal}>Your Events</EventsButton>
+        <EventsButton onClick={handleViewEvents}>Your Events</EventsButton>
       </Header>
       <hr />
 
@@ -71,31 +87,9 @@ const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
           ))}
         </div>
       )}
-
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h3>All Events</h3>
-        {allEvents.length === 0 ? (
-          <p>No events available.</p>
-        ) : (
-          <ul>
-            {allEvents.map((event) => (
-              <li key={event.id}>
-                <h4>{event.title}</h4>
-                <p>{event.description}</p>
-              </li>
-            ))}
-          </ul>
-        )}
-      </Modal>
     </div>
   );
 };
-
-const GlobalStyle = createGlobalStyle`
-  body.blur {
-    filter: blur(5px);
-  }
-`;
 
 const Header = styled.div`
   display: flex;

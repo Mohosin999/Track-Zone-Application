@@ -1,7 +1,9 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { generate } from "shortid";
 import ClockList from "./components/clock-list";
 import LocalClock from "./components/local-clock";
+import EventPage from "./components/event-page";
 
 const LOCAL_CLOCK_INIT = {
   title: "My Clock",
@@ -21,7 +23,6 @@ const App = () => {
     localStorage.setItem("clocks", JSON.stringify(clocks));
   }, [clocks]);
 
-  // Function for update local clock
   const updateLocalClock = (data) => {
     setLocalClock({
       ...localClock,
@@ -29,13 +30,11 @@ const App = () => {
     });
   };
 
-  // Function for create clock
   const createClock = (clock) => {
-    clock.id = generate(); // Add an id with new created clock
+    clock.id = generate();
     setClocks([...clocks, clock]);
   };
 
-  // Function for update clock
   const updateClock = (updatedClock) => {
     const updatedClocks = clocks.map((clock) => {
       if (clock.id === updatedClock.id) {
@@ -47,26 +46,35 @@ const App = () => {
     setClocks(updatedClocks);
   };
 
-  // Function for delete clock
   const deleteClock = (id) => {
     const deletedClocks = clocks.filter((clock) => clock.id !== id);
     setClocks(deletedClocks);
   };
 
   return (
-    <div>
-      <LocalClock
-        clock={localClock}
-        updateClock={updateLocalClock}
-        createClock={createClock}
-      />
-      <ClockList
-        clocks={clocks}
-        localClock={localClock.date}
-        updateClock={updateClock}
-        deleteClock={deleteClock}
-      />
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <LocalClock
+                clock={localClock}
+                updateClock={updateLocalClock}
+                createClock={createClock}
+              />
+              <ClockList
+                clocks={clocks}
+                localClock={localClock.date}
+                updateClock={updateClock}
+                deleteClock={deleteClock}
+              />
+            </div>
+          }
+        />
+        <Route path="/events" element={<EventPage />} />
+      </Routes>
+    </Router>
   );
 };
 
