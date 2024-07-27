@@ -47,14 +47,19 @@ const EventForm = ({ clockId, event, addEvent, updateEvent }) => {
         // readOnly={!!event} // Make title read-only if editing
         required
       />
-      <input
+      {/* <input
         type="text"
         name="description"
         value={formData.description}
         onChange={handleChange}
         placeholder="Event Description"
         required
-      />
+      /> */}
+      <textarea
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+      ></textarea>
       <button type="submit">{event ? "Update Event" : "Add Event"}</button>
     </form>
   );

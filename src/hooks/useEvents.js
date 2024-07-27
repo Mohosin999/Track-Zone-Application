@@ -43,21 +43,24 @@ const useEvents = () => {
     setState(events);
   };
 
-  // const updateEvent = (updatedEvent, id) => {
-  //   const events = { ...state };
-  //   events[id] = {
-  //     ...events[id],
-  //     ...updatedEvent,
-  //   };
-  //   setState(events);
-  // };
   const updateEvent = (updatedEvent) => {
     const { id, clockId } = updatedEvent;
-    setState((prev) => ({
-      ...prev,
-      [`${clockId}|${id}`]: updatedEvent,
-    }));
+    const events = { ...state };
+
+    events[`${clockId}|${id}`] = {
+      ...events[`${clockId}|${id}`],
+      ...updatedEvent,
+    };
+    setState(events);
   };
+
+  // const updateEvent = (updatedEvent) => {
+  //   const { id, clockId } = updatedEvent;
+  //   setState((prev) => ({
+  //     ...prev,
+  //     [`${clockId}|${id}`]: updatedEvent,
+  //   }));
+  // };
 
   return {
     events: state,
