@@ -54,14 +54,6 @@ const useEvents = () => {
     setState(events);
   };
 
-  // const updateEvent = (updatedEvent) => {
-  //   const { id, clockId } = updatedEvent;
-  //   setState((prev) => ({
-  //     ...prev,
-  //     [`${clockId}|${id}`]: updatedEvent,
-  //   }));
-  // };
-
   return {
     events: state,
     getEventsByClockId,
