@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ActionButton from "../../ui/action-button";
 import InputField from "../../ui/input";
 import TextAreaField from "../../ui/textarea";
+import Title from "../../ui/title";
 
 const EventUpdateForm = ({
   event,
@@ -13,7 +14,7 @@ const EventUpdateForm = ({
 }) => {
   return (
     <FormContainer onSubmit={onSubmit}>
-      <FormTitle>Update Event</FormTitle>
+      <Title>Update Event</Title>
       <InputField
         type="text"
         value={event.title}
@@ -51,10 +52,6 @@ const FormContainer = styled.form`
   border-radius: 5px;
   margin-bottom: 20px;
   animation: fadeIn 0.5s ease-in-out;
-`;
-
-const FormTitle = styled.h3`
-  margin-top: 0;
 `;
 
 const FormActions = styled.div`
