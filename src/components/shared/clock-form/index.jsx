@@ -17,6 +17,10 @@ const ClockForm = ({
   handleClock,
   title = true,
   edit = false,
+  isEdit,
+  setIsEdit,
+  isCreate,
+  setIsCreate,
 }) => {
   // State for form values
   const [formValues, setFormValues] = useState({ ...values });
@@ -49,6 +53,12 @@ const ClockForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleClock(formValues); // State lifting
+    if (isEdit) {
+      setIsEdit(!isEdit);
+    }
+    if (isCreate) {
+      setIsCreate(!isCreate);
+    }
   };
 
   // Render ClockForm component

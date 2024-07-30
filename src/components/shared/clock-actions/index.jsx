@@ -14,12 +14,13 @@
 
 //   const { deleteEventsByClockId } = useEvents();
 
-//   const handleDeleteClock = (clockId) => {
-//     deleteEventsByClockId(clockId);
-//     deleteClock(clockId);
-//   };
 //   const handleClock = (values) => {
 //     createClock(values); // State lifting
+//   };
+
+//   const handleDeleteClock = (id) => {
+//     deleteClock(id);
+//     deleteEventsByClockId(id); // Delete all events associated with the clock
 //   };
 
 //   return (
@@ -58,6 +59,7 @@
 import { useState } from "react";
 import ClockForm from "../clock-form";
 import useEvents from "../../../hooks/useEvents";
+import ActionButton from "../../ui/action-button";
 
 const ClockActions = ({
   local = false,
@@ -82,11 +84,15 @@ const ClockActions = ({
 
   return (
     <div>
-      <button onClick={() => setIsEdit(!isEdit)}>Edit</button>
+      {/* <Action onClick={() => setIsEdit(!isEdit)}>Edit</Action> */}
+      <ActionButton label="Edit" onClick={() => setIsEdit(!isEdit)} />
       {local ? (
-        <button onClick={() => setIsCreate(!isCreate)}>Create</button>
+        <ActionButton label="Create" onClick={() => setIsCreate(!isCreate)} />
       ) : (
-        <button onClick={() => handleDeleteClock(clock.id)}>Delete</button>
+        <ActionButton
+          label="Delete"
+          onClick={() => handleDeleteClock(clock.id)}
+        />
       )}
 
       {isEdit && (
@@ -97,6 +103,8 @@ const ClockActions = ({
             edit={true}
             title={!local}
             values={clock}
+            isEdit={isEdit}
+            setIsEdit={setIsEdit}
           />
         </>
       )}
@@ -104,7 +112,11 @@ const ClockActions = ({
       {isCreate && (
         <>
           <h3>Create New Clock</h3>
-          <ClockForm handleClock={handleClock} />
+          <ClockForm
+            handleClock={handleClock}
+            isCreate={isCreate}
+            setIsCreate={setIsCreate}
+          />
         </>
       )}
     </div>
