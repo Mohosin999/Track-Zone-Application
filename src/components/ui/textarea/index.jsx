@@ -2,7 +2,13 @@ import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const TextAreaField = ({ value, onChange, placeholder, required }) => {
+const TextAreaField = ({
+  name = "",
+  value,
+  onChange,
+  placeholder,
+  required,
+}) => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
@@ -15,6 +21,7 @@ const TextAreaField = ({ value, onChange, placeholder, required }) => {
   return (
     <StyledTextarea
       ref={textareaRef}
+      name={name}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
@@ -24,6 +31,7 @@ const TextAreaField = ({ value, onChange, placeholder, required }) => {
 };
 
 TextAreaField.propTypes = {
+  name: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,

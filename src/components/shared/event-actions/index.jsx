@@ -1,5 +1,6 @@
 import { useState } from "react";
 import EventForm from "../event-form";
+import ActionButton from "../../ui/action-button";
 
 const EventActions = ({
   clockId,
@@ -7,19 +8,36 @@ const EventActions = ({
   addEvent,
   updateEvent,
   deleteEvent,
-  // isCreateEvent,
-  // setIsCreateEvent,
+  toggleEvent,
+  setToggleEvent,
+  aboveEvent = false,
 }) => {
   const [isCreateEvent, setIsCreateEvent] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
   return (
     <div>
-      <button onClick={() => setIsCreateEvent(!isCreateEvent)}>Create</button>
-      <button onClick={() => setIsEdit(!isEdit)}>Edit</button>
-      <button onClick={() => deleteEvent(`${clockId}|${event.id}`)}>
-        Delete
-      </button>
+      {aboveEvent ? (
+        <>
+          <ActionButton
+            label="Create New Event"
+            onClick={() => setIsCreateEvent(!isCreateEvent)}
+          />
+          <ActionButton
+            label="Toggle Events"
+            onClick={() => setToggleEvent(!toggleEvent)}
+          />
+        </>
+      ) : (
+        <>
+          <ActionButton label="Edit" onClick={() => setIsEdit(!isEdit)} />
+          <ActionButton
+            label="Delete"
+            onClick={() => deleteEvent(`${clockId}|${event.id}`)}
+            backgroundColor={"#ff0000"}
+          />
+        </>
+      )}
 
       {isEdit && (
         <>

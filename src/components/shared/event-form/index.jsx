@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import InputField from "../../ui/input";
+import TextAreaField from "../../ui/textarea";
+import ActionButton from "../../ui/action-button";
 
 const EventForm = ({ clockId, event, addEvent, updateEvent }) => {
   const [formData, setFormData] = useState({
@@ -38,29 +41,26 @@ const EventForm = ({ clockId, event, addEvent, updateEvent }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <InputField
         type="text"
         name="title"
         value={formData.title}
         onChange={handleChange}
         placeholder="Event Title"
-        // readOnly={!!event} // Make title read-only if editing
-        required
+        required={true}
       />
-      {/* <input
-        type="text"
+
+      <TextAreaField
         name="description"
         value={formData.description}
         onChange={handleChange}
-        placeholder="Event Description"
-        required
-      /> */}
-      <textarea
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-      ></textarea>
-      <button type="submit">{event ? "Update Event" : "Add Event"}</button>
+        required={true}
+      />
+
+      <ActionButton
+        type="submit"
+        label={event ? "Update Event" : "Add Event"}
+      />
     </form>
   );
 };

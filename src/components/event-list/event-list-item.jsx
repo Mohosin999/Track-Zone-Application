@@ -4,7 +4,6 @@ import EventActions from "../shared/event-actions";
 const EventListItem = ({
   clockId,
   event,
-  // addEvent,
   updateEvent,
   deleteEvent,
   // isCreateEvent,
