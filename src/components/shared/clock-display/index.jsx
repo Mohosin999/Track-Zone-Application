@@ -1,5 +1,4 @@
 import { format } from "date-fns";
-import classes from "./index.module.css";
 
 /**
  * ClockDisplay component displays a formatted date, title, timezone, and offset.
@@ -15,7 +14,7 @@ const ClockDisplay = ({ date, title, timezone, offset }) => {
   let offsetHr = offset / 60;
 
   return (
-    <div className={classes.card}>
+    <div>
       <h1>Title: {title}</h1>
       <h3>{format(date, "yyyy-MM-dd hh:mm:ss aaa")}</h3>
       <p>

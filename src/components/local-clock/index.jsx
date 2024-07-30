@@ -30,7 +30,7 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
   }, [date]);
 
   return (
-    <div>
+    <div style={{ background: "green" }}>
       {timer && (
         <ClockDisplay
           date={timer}

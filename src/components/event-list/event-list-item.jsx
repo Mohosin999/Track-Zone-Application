@@ -1,5 +1,5 @@
 import EventActions from "../shared/event-actions";
-import EventItem from "../shared/event-item";
+// import EventItem from "../shared/event-item";
 
 const EventListItem = ({
   clockId,
@@ -11,27 +11,27 @@ const EventListItem = ({
   // setIsCreateEvent,
 }) => {
   return (
-    // <li key={event.id}>
-    //   <h3>{event.title}</h3>
-    //   <p>{event.description}</p>
+    <li key={event.id}>
+      <h3>{event.title}</h3>
+      <p>{event.description}</p>
 
-    //   {/* Buttons */}
-    //   <EventActions
-    //     clockId={clockId}
-    //     event={event}
-    //     // addEvent={addEvent}
-    //     updateEvent={updateEvent}
-    //     deleteEvent={deleteEvent}
-    //     // isCreateEvent={isCreateEvent}
-    //     // setIsCreateEvent={setIsCreateEvent}
-    //   />
-    // </li>
-    <EventItem
-      key={event.id}
-      event={event}
-      onUpdate={updateEvent}
-      onDelete={deleteEvent}
-    />
+      {/* Buttons */}
+      <EventActions
+        clockId={clockId}
+        event={event}
+        // addEvent={addEvent}
+        updateEvent={updateEvent}
+        deleteEvent={deleteEvent}
+        // isCreateEvent={isCreateEvent}
+        // setIsCreateEvent={setIsCreateEvent}
+      />
+    </li>
+    // <EventItem
+    //   key={event.id}
+    //   event={event}
+    //   onUpdate={updateEvent}
+    //   onDelete={deleteEvent}
+    // />
   );
 };
 

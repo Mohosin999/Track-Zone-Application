@@ -10,8 +10,7 @@ const EventPage = () => {
   const [editingEvent, setEditingEvent] = useState(null);
   const [popupMessage, setPopupMessage] = useState("");
 
-  const { getEvents, deleteEvent, updateEvent, deleteEventByClock } =
-    useEvents();
+  const { getEvents, deleteEvent, updateEvent, clearAllEvents } = useEvents();
   const allEvents = getEvents(true);
   const navigate = useNavigate();
 
@@ -35,7 +34,7 @@ const EventPage = () => {
   };
 
   const handleClearAll = () => {
-    deleteEventByClock("");
+    clearAllEvents();
     showPopup("All events cleared.");
   };
 

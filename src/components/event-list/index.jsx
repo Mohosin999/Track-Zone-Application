@@ -6,7 +6,7 @@ const EventList = ({ clockId }) => {
   // const [isCreateEvent, setIsCreateEvent] = useState(false);
   // const [toggleEvent, setToggleEvent] = useState(true);
 
-  const { addEvent, deleteEvent, getEventsByClockId, updateEvent } =
+  const { state, addEvent, deleteEvent, getEventsByClockId, updateEvent } =
     useEvents();
   const events = getEventsByClockId(clockId);
 
@@ -15,7 +15,7 @@ const EventList = ({ clockId }) => {
       <EventActions
         clockId={clockId}
         addEvent={addEvent}
-        deleteEvent={deleteEvent}
+        // deleteEvent={deleteEvent}
       />
       <ul>
         {events.length === 0 ? (
