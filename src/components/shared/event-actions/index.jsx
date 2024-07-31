@@ -5,15 +5,16 @@ import ActionButton from "../../ui/action-button";
 const EventActions = ({
   clockId,
   event,
-  addEvent,
-  updateEvent,
-  deleteEvent,
+  handleCreateEvent,
+  handleDeleteEvent,
+  isEdit,
+  setIsEdit,
   toggleEvent,
   setToggleEvent,
   aboveEvent = false,
+  disabled,
 }) => {
   const [isCreateEvent, setIsCreateEvent] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
 
   return (
     <div>
@@ -26,6 +27,7 @@ const EventActions = ({
           <ActionButton
             label="Toggle Events"
             onClick={() => setToggleEvent(!toggleEvent)}
+            disabled={disabled}
           />
         </>
       ) : (
@@ -33,32 +35,18 @@ const EventActions = ({
           <ActionButton label="Edit" onClick={() => setIsEdit(!isEdit)} />
           <ActionButton
             label="Delete"
-            onClick={() => deleteEvent(`${clockId}|${event.id}`)}
+            onClick={() => handleDeleteEvent(`${clockId}|${event.id}`)}
             backgroundColor={"#ff0000"}
-          />
-        </>
-      )}
-
-      {isEdit && (
-        <>
-          <h3>Edit Event</h3>
-          <EventForm
-            clockId={clockId}
-            event={event}
-            updateEvent={updateEvent}
-            isEdit={isEdit}
-            setIsEdit={setIsEdit}
           />
         </>
       )}
 
       {isCreateEvent && (
         <>
-          <h3>Create Event</h3>
           <EventForm
             clockId={clockId}
             event={event}
-            addEvent={addEvent}
+            handleCreateEvent={handleCreateEvent}
             isCreateEvent={isCreateEvent}
             setIsCreateEvent={setIsCreateEvent}
           />

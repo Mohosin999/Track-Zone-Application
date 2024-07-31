@@ -2,54 +2,41 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useEvents from "../../hooks/useEvents";
-import EventItem from "../shared/event-item";
-import EventUpdateForm from "../shared/event-update-form";
+// import EventItem from "../shared/event-item";
+// import EventUpdateForm from "../shared/event-update-form";
+// import EventForm from "../shared/event-form";
+import EventListItem from "../event-list/event-list-item";
 
 const EventPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [editingEvent, setEditingEvent] = useState(null);
   const [popupMessage, setPopupMessage] = useState("");
 
   const { getEvents, deleteEvent, updateEvent, clearAllEvents } = useEvents();
   const allEvents = getEvents(true);
   const navigate = useNavigate();
 
-  const handleDelete = (id) => {
+  const showPopup = (message) => {
+    setPopupMessage(message);
+    setTimeout(() => setPopupMessage(""), 3000);
+  };
+
+  const handleUpdateEvent = (event) => {
+    updateEvent(event);
+    showPopup("Event Updated!");
+  };
+
+  const handleDeleteEvent = (id) => {
     deleteEvent(id);
-    showPopup("Event deleted successfully.");
-  };
-
-  const handleUpdate = (event) => {
-    if (editingEvent && editingEvent.id === event.id) {
-      setEditingEvent(null);
-    } else {
-      setEditingEvent(event);
-    }
-  };
-
-  const handleUpdateSubmit = (updatedEvent) => {
-    updateEvent(updatedEvent);
-    setEditingEvent(null);
-    showPopup("Event updated successfully.");
+    showPopup("Event deleted!");
   };
 
   const handleClearAll = () => {
     clearAllEvents();
-    showPopup("All events cleared.");
+    showPopup("All events cleared!");
   };
 
   const handleBack = () => {
     navigate("/");
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleUpdateSubmit(editingEvent);
-  };
-
-  const showPopup = (message) => {
-    setPopupMessage(message);
-    setTimeout(() => setPopupMessage(""), 3000);
   };
 
   const filteredEvents = allEvents.filter(
@@ -86,29 +73,37 @@ const EventPage = () => {
       ) : (
         <EventList>
           {filteredEvents.map((event) => (
-            <div key={event.id}>
-              <EventItem
-                event={event}
-                onUpdate={handleUpdate}
-                onDelete={() => handleDelete(`${event.clockId}|${event.id}`)}
-              />
-              {editingEvent && editingEvent.id === event.id && (
-                <EventUpdateForm
-                  event={editingEvent}
-                  onSubmit={handleSubmit}
-                  onCancel={() => setEditingEvent(null)}
-                  onTitleChange={(e) =>
-                    setEditingEvent({ ...editingEvent, title: e.target.value })
-                  }
-                  onDescriptionChange={(e) =>
-                    setEditingEvent({
-                      ...editingEvent,
-                      description: e.target.value,
-                    })
-                  }
-                />
-              )}
-            </div>
+            // <div key={event.id}>
+            //   <EventItem
+            //     event={event}
+            //     onUpdate={handleUpdate}
+            //     onDelete={() => handleDelete(`${event.clockId}|${event.id}`)}
+            //   />
+            //   {editingEvent && editingEvent.id === event.id && (
+            //     // <EventUpdateForm
+            //     //   event={editingEvent}
+            //     //   onSubmit={handleSubmit}
+            //     //   onCancel={() => setEditingEvent(null)}
+            //     //   onTitleChange={(e) =>
+            //     //     setEditingEvent({ ...editingEvent, title: e.target.value })
+            //     //   }
+            //     //   onDescriptionChange={(e) =>
+            //     //     setEditingEvent({
+            //     //       ...editingEvent,
+            //     //       description: e.target.value,
+            //     //     })
+            //     //   }
+            //     // />
+            //     // <EventForm event={editingEvent} updateEvent={updateEvent} />
+            //   )}
+            // </div>
+            <EventListItem
+              key={event.id}
+              clockId={event.clockId}
+              event={event}
+              handleUpdateEvent={handleUpdateEvent}
+              handleDeleteEvent={handleDeleteEvent}
+            />
           ))}
         </EventList>
       )}
