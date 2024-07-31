@@ -36,16 +36,17 @@ ActionButton.propTypes = {
 
 ActionButton.defaultProps = {
   disabled: false,
-  backgroundColor: "#daa520",
+  backgroundColor: "#ff0000",
   hoverColor: "#b8860b",
   disabledColor: "#ccc",
 };
 
 const Button = styled.button`
-  background: ${({ backgroundColor }) => backgroundColor || "#daa520"};
+  background: ${({ backgroundColor }) => backgroundColor || "#ff0000"};
   color: white;
   border: none;
-  padding: 10px;
+  font-size: 12px;
+  padding: 6px 20px;
   cursor: pointer;
   border-radius: 5px;
 
@@ -56,6 +57,11 @@ const Button = styled.button`
   &:disabled {
     background: ${({ disabledColor }) => disabledColor || "#ccc"};
     cursor: not-allowed;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+    padding: 10px 30px;
   }
 `;
 

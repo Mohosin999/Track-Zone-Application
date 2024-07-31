@@ -6,7 +6,7 @@ import LocalClock from "./components/local-clock";
 import EventPage from "./components/event-page";
 
 const LOCAL_CLOCK_INIT = {
-  title: "My Clock",
+  title: "Home Page Clock",
   timezone: "",
   offset: 0,
   date: null,
