@@ -1,64 +1,12 @@
-// import { useNavigate } from "react-router-dom";
-// import styled from "styled-components";
-// import ClockListItem from "./clock-list-item";
-
-// const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
-//   const navigate = useNavigate();
-
-//   const handleViewEvents = () => {
-//     navigate("/events");
-//   };
-
-//   return (
-//     <div>
-//       <Header>
-//         <h3>Other Clocks</h3>
-//         <EventsButton onClick={handleViewEvents}>Your Events</EventsButton>
-//       </Header>
-//       <hr />
-
-//       {clocks.length === 0 ? (
-//         <p>There is no clock, please create one</p>
-//       ) : (
-//         <div>
-//           {clocks.map((clock) => (
-//             <ClockListItem
-//               key={clock.id}
-//               clock={clock}
-//               updateClock={updateClock}
-//               deleteClock={deleteClock}
-//               localClock={localClock}
-//             />
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// const Header = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   cursor: pointer;
-// `;
-
-// const EventsButton = styled.h4`
-//   color: blue;
-//   text-decoration: underline;
-//   cursor: pointer;
-// `;
-
-// export default ClockList;
-
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import ClockListItem from "./clock-list-item";
 
 const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
   return (
     <div>
-      <h3>Your Others Clocks</h3>
-      <hr />
+      <HeadingContainer>
+        <Heading>Your Others Clocks</Heading>
+      </HeadingContainer>
 
       {clocks.length === 0 ? (
         <p>There is no clock, please create one</p>
@@ -78,5 +26,37 @@ const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
     </div>
   );
 };
+
+const slide = keyframes`
+  0% {
+    transform: translateX(-50%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+`;
+
+const HeadingContainer = styled.div`
+  overflow: hidden; /* Ensure the text stays within the container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Heading = styled.h3`
+  font-size: 18px;
+  margin: 8px 10px;
+  display: inline-block;
+  white-space: nowrap;
+  animation: ${slide} 7s infinite;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+    margin: 10px 20px;
+  }
+`;
 
 export default ClockList;

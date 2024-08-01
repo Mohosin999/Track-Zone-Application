@@ -1,17 +1,9 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 import { TIMEZONE_OFFSET } from "../../../constants/timezone";
 import { getOffset } from "../../../utils/timezone";
 
-/**
- * ClockForm component for creating and editing clocks.
- *
- * @param {Object} values - Initial form values
- * @param {function} handleClock - Callback function to handle form submission
- * @param {Boolean} title - Flag to enable/disable title input
- * @param {Boolean} edit - Flag to indicate edit mode
- *
- * @returns {JSX.Element} - ClockForm component
- */
 const ClockForm = ({
   values = { title: "", timezone: "UTC", offset: 0 },
   handleClock,
@@ -19,13 +11,11 @@ const ClockForm = ({
   edit = false,
   isEdit,
   setIsEdit,
-  isCreate,
-  setIsCreate,
+  isCreateClock,
+  setIsCreateClock,
 }) => {
-  // State for form values
   const [formValues, setFormValues] = useState({ ...values });
 
-  // Update offset when timezone changes
   useEffect(() => {
     if (TIMEZONE_OFFSET[formValues.timezone]) {
       setFormValues((prev) => ({
@@ -35,12 +25,11 @@ const ClockForm = ({
     }
   }, [formValues.timezone]);
 
-  // Handle form input changes
   const handleChange = (e) => {
     let { name, value } = e.target;
 
     if (name === "offset") {
-      value = Number(value) * 60; // Convert offset from minutes to seconds
+      value = Number(value) * 60;
     }
 
     setFormValues((prev) => ({
@@ -49,24 +38,22 @@ const ClockForm = ({
     }));
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleClock(formValues); // State lifting
+    handleClock(formValues);
     if (isEdit) {
       setIsEdit(!isEdit);
     }
-    if (isCreate) {
-      setIsCreate(!isCreate);
+    if (isCreateClock) {
+      setIsCreateClock(!isCreateClock);
     }
   };
 
-  // Render ClockForm component
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="title">Enter Title</label>
-        <input
+    <Form onSubmit={handleSubmit}>
+      <FormField>
+        <Label htmlFor="title">Enter Title</Label>
+        <Input
           type="text"
           id="title"
           name="title"
@@ -74,11 +61,11 @@ const ClockForm = ({
           onChange={handleChange}
           disabled={!title}
         />
-      </div>
+      </FormField>
 
-      <div>
-        <label htmlFor="timezone">Enter Timezone</label>
-        <select
+      <FormField>
+        <Label htmlFor="timezone">Enter Timezone</Label>
+        <Select
           id="timezone"
           name="timezone"
           value={formValues.timezone}
@@ -91,13 +78,13 @@ const ClockForm = ({
           <option value="EDT">EDT</option>
           <option value="BST">BST</option>
           <option value="MST">MST</option>
-        </select>
-      </div>
+        </Select>
+      </FormField>
 
       {(formValues.timezone === "GMT" || formValues.timezone === "UTC") && (
-        <div>
-          <label htmlFor="offset">Enter Offset</label>
-          <select
+        <FormField>
+          <Label htmlFor="offset">Enter Offset</Label>
+          <Select
             id="offset"
             name="offset"
             value={formValues.offset / 60}
@@ -108,13 +95,94 @@ const ClockForm = ({
                 {offset}
               </option>
             ))}
-          </select>
-        </div>
+          </Select>
+        </FormField>
       )}
 
-      <button>{edit ? "Update" : "Create"}</button>
-    </form>
+      <Button>{edit ? "Update" : "Create"}</Button>
+    </Form>
   );
 };
+
+ClockForm.propTypes = {
+  values: PropTypes.shape({
+    title: PropTypes.string,
+    timezone: PropTypes.string,
+    offset: PropTypes.number,
+  }),
+  handleClock: PropTypes.func.isRequired,
+  title: PropTypes.bool,
+  edit: PropTypes.bool,
+  isEdit: PropTypes.bool,
+  setIsEdit: PropTypes.func,
+  isCreate: PropTypes.bool,
+  setIsCreate: PropTypes.func,
+};
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 90%;
+  margin: 10px auto;
+  padding: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  @media (min-width: 768px) {
+    max-width: 600px;
+    padding: 20px;
+  }
+`;
+
+const FormField = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Label = styled.label`
+  font-size: 14px;
+  margin-bottom: 5px;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+`;
+
+const Input = styled.input`
+  padding: 4px;
+  font-size: 14px;
+
+  @media (min-width: 768px) {
+    padding: 8px;
+    font-size: 16px;
+  }
+`;
+
+const Select = styled.select`
+  padding: 4px;
+  font-size: 14px;
+
+  @media (min-width: 768px) {
+    padding: 8px;
+    font-size: 16px;
+  }
+`;
+
+const Button = styled.button`
+  padding: 8px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+`;
 
 export default ClockForm;

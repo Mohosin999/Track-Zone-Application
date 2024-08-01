@@ -4,6 +4,7 @@ import { generate } from "shortid";
 import ClockList from "./components/clock-list";
 import LocalClock from "./components/local-clock";
 import EventPage from "./components/event-page";
+import GoToTopButton from "./components/ui/go-to-top-button";
 
 const LOCAL_CLOCK_INIT = {
   title: "Home Page Clock",
@@ -69,6 +70,8 @@ const App = () => {
                 updateClock={updateClock}
                 deleteClock={deleteClock}
               />
+
+              <GoToTopButton />
             </div>
           }
         />
