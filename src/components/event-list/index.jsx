@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import useEvents from "../../hooks/useEvents";
 import EventListItem from "./event-list-item";
 import EventActions from "../shared/event-actions";
@@ -35,18 +35,20 @@ const EventList = ({ clockId }) => {
 
   return (
     <div>
-      <EventActions
-        aboveEvent={true}
-        clockId={clockId}
-        handleCreateEvent={handleCreateEvent}
-        toggleEvent={toggleEvent}
-        setToggleEvent={setToggleEvent}
-        disabled={events.length === 0}
-      />
+      <ButtonsPosition>
+        <EventActions
+          aboveEvent={true}
+          clockId={clockId}
+          handleCreateEvent={handleCreateEvent}
+          toggleEvent={toggleEvent}
+          setToggleEvent={setToggleEvent}
+          disabled={events.length === 0}
+        />
+      </ButtonsPosition>
 
       <ul style={{ paddingLeft: 0 }}>
         {events.length === 0 ? (
-          <h3>There is no event yet</h3>
+          <EmptyEventTitle>There is no event yet</EmptyEventTitle>
         ) : (
           toggleEvent &&
           events.map((event) => (
@@ -74,6 +76,37 @@ const EventList = ({ clockId }) => {
     </div>
   );
 };
+
+const ButtonsPosition = styled.div`
+  margin: 0 10px;
+
+  @media (min-width: 768px) {
+    margin: 0 20px;
+  }
+`;
+
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+const EmptyEventTitle = styled.h3`
+  color: red;
+  margin: 0 10px;
+  text-align: center;
+  animation: ${pulse} 2s infinite;
+
+  @media (min-width: 768px) {
+    margin: 0 20px;
+  }
+`;
 
 const Popup = styled.div`
   position: fixed;

@@ -48,14 +48,14 @@ const HeadingContainer = styled.div`
 
 const Heading = styled.h3`
   font-size: 18px;
-  margin: 8px 10px;
+  margin: 10px 10px 0;
   display: inline-block;
   white-space: nowrap;
-  animation: ${slide} 7s infinite;
+  animation: ${slide} 10s infinite;
 
   @media (min-width: 768px) {
     font-size: 20px;
-    margin: 10px 20px;
+    margin: 20px 20px 0;
   }
 `;
 

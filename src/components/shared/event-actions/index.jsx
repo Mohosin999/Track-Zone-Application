@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styled from "styled-components";
 import EventForm from "../event-form";
 import ActionButton from "../../ui/action-button";
 
@@ -19,7 +20,7 @@ const EventActions = ({
   return (
     <div>
       {aboveEvent ? (
-        <>
+        <ButtonGroup>
           <ActionButton
             label="Create New Event"
             onClick={() => setIsCreateEvent(!isCreateEvent)}
@@ -29,16 +30,16 @@ const EventActions = ({
             onClick={() => setToggleEvent(!toggleEvent)}
             disabled={disabled}
           />
-        </>
+        </ButtonGroup>
       ) : (
-        <>
+        <ButtonGroup>
           <ActionButton label="Edit" onClick={() => setIsEdit(!isEdit)} />
           <ActionButton
             label="Delete"
             onClick={() => handleDeleteEvent(`${clockId}|${event.id}`)}
             backgroundColor={"#ff0000"}
           />
-        </>
+        </ButtonGroup>
       )}
 
       {isCreateEvent && (
@@ -55,5 +56,14 @@ const EventActions = ({
     </div>
   );
 };
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 5px;
+
+  @media (min-width: 768px) {
+    gap: 10px;
+  }
+`;
 
 export default EventActions;

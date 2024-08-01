@@ -73,7 +73,6 @@ const ClockDisplayContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 16px 10px 10px 10px;
-  // background: pink;
 
   @media (min-width: 768px) {
     padding: 20px 20px 10px 20px;

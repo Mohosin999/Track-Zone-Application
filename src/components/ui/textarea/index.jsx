@@ -41,15 +41,17 @@ TextAreaField.propTypes = {
 const StyledTextarea = styled.textarea`
   display: block;
   width: 100%;
-  height: auto;
-  padding: 10px;
-  margin: 10px 0;
-  font-size: 20px;
-  font-family: Oswald;
+  padding: 4px;
+  font-size: 14px;
   line-height: 25px;
+  font-family: monospace;
   border: 1px solid #ccc;
-  border-radius: 5px;
   box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    padding: 8px;
+    font-size: 16px;
+  }
 `;
 
 export default TextAreaField;

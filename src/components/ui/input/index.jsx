@@ -48,7 +48,7 @@ const InputField = ({
   required,
 }) => {
   return (
-    <StyledInput
+    <Input
       type={type}
       name={name}
       value={value}
@@ -68,17 +68,19 @@ InputField.propTypes = {
   required: PropTypes.bool,
 };
 
-const StyledInput = styled.input`
+const Input = styled.input`
   display: block;
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  font-size: 20px;
-  font-family: Oswald;
-  line-height: 25px;
+  padding: 4px;
+  font-size: 14px;
+  font-family: monospace;
   border: 1px solid #ccc;
-  border-radius: 5px;
   box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    padding: 8px;
+    font-size: 16px;
+  }
 `;
 
 export default InputField;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { TIMEZONE_OFFSET } from "../../../constants/timezone";
 import { getOffset } from "../../../utils/timezone";
+import InputField from "../../ui/input";
 
 const ClockForm = ({
   values = { title: "", timezone: "UTC", offset: 0 },
@@ -53,7 +54,7 @@ const ClockForm = ({
     <Form onSubmit={handleSubmit}>
       <FormField>
         <Label htmlFor="title">Enter Title</Label>
-        <Input
+        <InputField
           type="text"
           id="title"
           name="title"
@@ -144,16 +145,6 @@ const Label = styled.label`
   margin-bottom: 5px;
 
   @media (min-width: 768px) {
-    font-size: 16px;
-  }
-`;
-
-const Input = styled.input`
-  padding: 4px;
-  font-size: 14px;
-
-  @media (min-width: 768px) {
-    padding: 8px;
     font-size: 16px;
   }
 `;
