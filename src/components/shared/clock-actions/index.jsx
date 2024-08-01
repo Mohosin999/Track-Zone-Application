@@ -70,9 +70,9 @@ const ClockActions = ({
 const ButtonGroup = styled.div`
   display: flex;
   gap: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 7px;
+  // padding-left: 10px;
+  // padding-right: 10px;
+  // padding-bottom: 7px;
 
   @media (min-width: 768px) {
     gap: 10px;

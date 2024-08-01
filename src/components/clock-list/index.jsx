@@ -1,4 +1,3 @@
-// import React from "react";
 // import { useNavigate } from "react-router-dom";
 // import styled from "styled-components";
 // import ClockListItem from "./clock-list-item";
@@ -52,24 +51,13 @@
 
 // export default ClockList;
 
-import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import ClockListItem from "./clock-list-item";
 
 const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
-  const navigate = useNavigate();
-
-  const handleViewEvents = () => {
-    navigate("/events");
-  };
-
   return (
     <div>
-      <Header>
-        <h3>Other Clocks</h3>
-        <EventsButton onClick={handleViewEvents}>Your Events</EventsButton>
-      </Header>
+      <h3>Your Others Clocks</h3>
       <hr />
 
       {clocks.length === 0 ? (
@@ -90,18 +78,5 @@ const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
     </div>
   );
 };
-
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-`;
-
-const EventsButton = styled.h4`
-  color: blue;
-  text-decoration: underline;
-  cursor: pointer;
-`;
 
 export default ClockList;
