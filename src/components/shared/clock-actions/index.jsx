@@ -13,6 +13,7 @@ const ClockActions = ({
 }) => {
   const { deleteEventsByClockId } = useEvents();
 
+
   const handleDeleteClock = (id) => {
     deleteClock(id);
     deleteEventsByClockId(id); // Delete all events associated with the clock

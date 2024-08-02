@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import useClock from "../../hooks/useClock";
 import useTimer from "../../hooks/useTimer";
 import ClockDisplay from "../shared/clock-display";
@@ -57,7 +57,6 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
         </ButtonsArea>
       </LocalClockContainer>
 
-      {/* Below code is for showing the clock form */}
       {isEdit && (
         <ClockForm
           values={clock}
@@ -81,7 +80,13 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
 };
 
 const LocalClockContainer = styled.div`
-  background: rgba(100, 150, 200);
+  position: relative;
+  overflow: hidden;
+  background-image: url("../../../public/clock.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  // backdrop-filter: blur(1000px);
 `;
 
 const ButtonsArea = styled.div`
@@ -91,18 +96,48 @@ const ButtonsArea = styled.div`
   padding: 0 14px 0 14px;
 
   @media (min-width: 768px) {
-    padding: 0 20px 6px 20px;
+    padding: 0 40px 6px 40px;
+  }
+`;
+
+const rotateAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 10px 4px #FFD700;
+    border-color: #FFD700;
+  }
+  25% {
+    box-shadow: 0 0 10px 4px #2E8B57;
+    border-color: #2E8B57;
+  }
+  50% {
+    box-shadow: 0 0 10px 4px #20B2AA;
+    border-color: #20B2AA;
+  }
+  75% {
+    box-shadow: 0 0 10px 4px #FFDEAD;
+    border-color: #FFDEAD;
+  }
+  100% {
+    box-shadow: 0 0 10px 4px #00ff00;
+    border-color: #00ff00;
   }
 `;
 
 const EventsButton = styled.p`
   color: #fff;
-  font-size: 15px;
+  font-size: 14px;
   text-decoration: none;
   cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  animation: ${rotateAnimation} 2s linear infinite;
 
   @media (min-width: 768px) {
-    font-size: 18px;
+    font-size: 16px;
+    padding: 10px 20px;
   }
 `;
 

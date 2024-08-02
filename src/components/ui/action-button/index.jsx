@@ -1,24 +1,9 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const ActionButton = ({
-  type,
-  label,
-  onClick,
-  disabled,
-  backgroundColor,
-  hoverColor,
-  disabledColor,
-}) => {
+const ActionButton = ({ type, label, onClick, disabled }) => {
   return (
-    <Button
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
-      backgroundColor={backgroundColor}
-      hoverColor={hoverColor}
-      disabledColor={disabledColor}
-    >
+    <Button type={type} onClick={onClick} disabled={disabled}>
       {label}
     </Button>
   );
@@ -34,28 +19,23 @@ ActionButton.propTypes = {
   disabledColor: PropTypes.string,
 };
 
-ActionButton.defaultProps = {
-  disabled: false,
-  backgroundColor: "#ff0000",
-  hoverColor: "#b8860b",
-  disabledColor: "#ccc",
-};
-
 const Button = styled.button`
-  background: ${({ backgroundColor }) => backgroundColor || "#ff0000"};
-  color: white;
+  background: #f8db35;
+  color: #222;
   border: none;
   font-size: 12px;
+  font-weight: bold;
   padding: 6px 20px;
   cursor: pointer;
   border-radius: 5px;
 
   &:hover {
-    background: ${({ hoverColor }) => hoverColor || "#b8860b"};
+    // box-shadow: 0 4px 8px rgba(248, 219, 53, 0.5);
+    box-shadow: 0 0 10px 4px rgba(248, 219, 53, 0.5);
   }
 
   &:disabled {
-    background: ${({ disabledColor }) => disabledColor || "#ccc"};
+    background: #ccc;
     cursor: not-allowed;
   }
 

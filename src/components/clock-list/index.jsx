@@ -11,7 +11,7 @@ const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
       {clocks.length === 0 ? (
         <p>There is no clock, please create one</p>
       ) : (
-        <StyledDiv>
+        <div>
           {clocks.map((clock) => (
             <ClockListItem
               key={clock.id}
@@ -21,7 +21,7 @@ const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
               localClock={localClock}
             />
           ))}
-        </StyledDiv>
+        </div>
       )}
     </div>
   );
@@ -57,11 +57,6 @@ const Heading = styled.h3`
     font-size: 20px;
     margin: 20px 20px 0;
   }
-`;
-
-const StyledDiv = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 `;
 
 export default ClockList;
