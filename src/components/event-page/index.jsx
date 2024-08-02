@@ -6,6 +6,7 @@ import useEvents from "../../hooks/useEvents";
 // import EventUpdateForm from "../shared/event-update-form";
 // import EventForm from "../shared/event-form";
 import EventListItem from "../event-list/event-list-item";
+import ActionButton from "../ui/action-button";
 
 const EventPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -62,9 +63,10 @@ const EventPage = () => {
             </ClearSearchButton>
           )}
         </SearchWrapper>
+
         <ButtonGroup>
-          <ClearAllButton onClick={handleClearAll}>Clear All</ClearAllButton>
-          <BackButton onClick={handleBack}>Go Back</BackButton>
+          <ActionButton label="Clear All" onClick={handleClearAll} />
+          <ActionButton label="Go Back" onClick={handleBack} />
         </ButtonGroup>
       </Header>
 
@@ -73,30 +75,6 @@ const EventPage = () => {
       ) : (
         <EventList>
           {filteredEvents.map((event) => (
-            // <div key={event.id}>
-            //   <EventItem
-            //     event={event}
-            //     onUpdate={handleUpdate}
-            //     onDelete={() => handleDelete(`${event.clockId}|${event.id}`)}
-            //   />
-            //   {editingEvent && editingEvent.id === event.id && (
-            //     // <EventUpdateForm
-            //     //   event={editingEvent}
-            //     //   onSubmit={handleSubmit}
-            //     //   onCancel={() => setEditingEvent(null)}
-            //     //   onTitleChange={(e) =>
-            //     //     setEditingEvent({ ...editingEvent, title: e.target.value })
-            //     //   }
-            //     //   onDescriptionChange={(e) =>
-            //     //     setEditingEvent({
-            //     //       ...editingEvent,
-            //     //       description: e.target.value,
-            //     //     })
-            //     //   }
-            //     // />
-            //     // <EventForm event={editingEvent} updateEvent={updateEvent} />
-            //   )}
-            // </div>
             <EventListItem
               key={event.id}
               clockId={event.clockId}
@@ -121,7 +99,6 @@ const EventPage = () => {
 };
 
 const Container = styled.div`
-  padding: 20px;
   overflow-y: auto;
 `;
 
@@ -129,11 +106,13 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 14px;
   gap: 10px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 820px) {
     flex-direction: row;
     justify-content: space-between;
+    padding: 20px;
   }
 `;
 
@@ -154,11 +133,16 @@ const SearchWrapper = styled.div`
 
 const SearchInput = styled.input`
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
+  padding: 4px 9px;
+  font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    padding: 8px 13px;
+    font-size: 16px;
+  }
 `;
 
 const ClearSearchButton = styled.button`
@@ -168,7 +152,7 @@ const ClearSearchButton = styled.button`
   transform: translateY(-50%);
   background: #f4a460;
   border: none;
-  font-size: 20px;
+  font-size: 14px;
   cursor: pointer;
   border-radius: 100%;
 
@@ -176,37 +160,15 @@ const ClearSearchButton = styled.button`
     background: #ff4500;
     transition: 0.3s;
   }
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
   gap: 10px;
-`;
-
-const ClearAllButton = styled.button`
-  background: #ff6347;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-
-  &:hover {
-    background: #ff4500;
-  }
-`;
-
-const BackButton = styled.button`
-  background: #20b2aa;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-
-  &:hover {
-    background: #008b8b;
-  }
 `;
 
 const NoEventsMessage = styled.p`

@@ -15,7 +15,7 @@ const EventListItem = ({
   const [isEdit, setIsEdit] = useState(false);
 
   return (
-    <>
+    <Container>
       <EventItemContainer key={event.id}>
         <EventContent>
           <Title>{event.title}</Title>
@@ -45,7 +45,7 @@ const EventListItem = ({
           />
         </>
       )}
-    </>
+    </Container>
   );
 };
 
@@ -64,16 +64,28 @@ const fadeIn = keyframes`
   }
 `;
 
+const Container = styled.div`
+  margin: 0 14px;
+
+  @media (min-width: 768px) {
+    margin: 0 20px;
+  }
+`;
+
 const EventItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #afeeee;
-  padding: 20px;
+  padding: 12px;
   border-radius: 5px;
   margin-bottom: 5px;
   animation: ${fadeIn} 0.5s ease-in-out;
   flex-direction: column;
+
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const EventContent = styled.div`

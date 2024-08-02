@@ -71,14 +71,14 @@ InputField.propTypes = {
 const Input = styled.input`
   display: block;
   width: 100%;
-  padding: 4px;
+  padding: 4px 9px;
   font-size: 14px;
   font-family: monospace;
   border: 1px solid #ccc;
   box-sizing: border-box;
 
   @media (min-width: 768px) {
-    padding: 8px;
+    padding: 8px 13px;
     font-size: 16px;
   }
 `;

@@ -152,6 +152,7 @@ const Label = styled.label`
 const Select = styled.select`
   padding: 4px;
   font-size: 14px;
+  font-family: monospace;
 
   @media (min-width: 768px) {
     padding: 8px;

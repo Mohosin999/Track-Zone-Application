@@ -88,7 +88,7 @@ const ButtonsArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px 0 10px;
+  padding: 0 14px 0 14px;
 
   @media (min-width: 768px) {
     padding: 0 20px 6px 20px;

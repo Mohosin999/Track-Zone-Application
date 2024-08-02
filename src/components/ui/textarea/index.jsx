@@ -41,7 +41,7 @@ TextAreaField.propTypes = {
 const StyledTextarea = styled.textarea`
   display: block;
   width: 100%;
-  padding: 4px;
+  padding: 4px 9px;
   font-size: 14px;
   line-height: 25px;
   font-family: monospace;
@@ -49,7 +49,7 @@ const StyledTextarea = styled.textarea`
   box-sizing: border-box;
 
   @media (min-width: 768px) {
-    padding: 8px;
+    padding: 8px 13px;
     font-size: 16px;
   }
 `;

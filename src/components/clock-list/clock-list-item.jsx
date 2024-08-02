@@ -57,8 +57,8 @@ const ClockListItem = ({ clock, updateClock, deleteClock, localClock }) => {
 
 const ClockItemCard = styled.div`
   background: pink;
-  margin: 10px;
-  padding: 0 10px 10px;
+  margin: 14px;
+  padding: 0 12px 10px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 

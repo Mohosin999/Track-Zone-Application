@@ -78,7 +78,7 @@ const EventList = ({ clockId }) => {
 };
 
 const ButtonsPosition = styled.div`
-  margin: 0 10px;
+  margin: 0 14px;
 
   @media (min-width: 768px) {
     margin: 0 20px;
