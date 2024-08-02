@@ -86,7 +86,6 @@ const LocalClockContainer = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  // backdrop-filter: blur(1000px);
 `;
 
 const ButtonsArea = styled.div`

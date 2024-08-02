@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import useEvents from "../../hooks/useEvents";
 import EventListItem from "./event-list-item";
 import EventActions from "../shared/event-actions";
+import EmptyEvent from "../empty-component/EmptyEvent";
 
 const EventList = ({ clockId }) => {
   const [toggleEvent, setToggleEvent] = useState(true);
@@ -48,7 +49,9 @@ const EventList = ({ clockId }) => {
 
       <ul style={{ paddingLeft: 0 }}>
         {events.length === 0 ? (
-          <EmptyEventTitle>There is no event yet</EmptyEventTitle>
+          <div>
+            <EmptyEvent />
+          </div>
         ) : (
           toggleEvent &&
           events.map((event) => (

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import PropTypes from "prop-types";
 import { TIMEZONE_OFFSET } from "../../../constants/timezone";
 import { getOffset } from "../../../utils/timezone";
 import InputField from "../../ui/input";
+import ActionButton from "../../ui/action-button";
 
 const ClockForm = ({
   values = { title: "", timezone: "UTC", offset: 0 },
@@ -100,7 +101,7 @@ const ClockForm = ({
         </FormField>
       )}
 
-      <Button>{edit ? "Update" : "Create"}</Button>
+      {edit ? <ActionButton label="Update" /> : <ActionButton label="Create" />}
     </Form>
   );
 };
@@ -120,18 +121,46 @@ ClockForm.propTypes = {
   setIsCreate: PropTypes.func,
 };
 
+// This is for animation around the form.
+const rotateAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 10px 4px #FFD700;
+    border-color: #FFD700;
+  }
+  25% {
+    box-shadow: 0 0 10px 4px #2E8B57;
+    border-color: #2E8B57;
+  }
+  50% {
+    box-shadow: 0 0 10px 4px #20B2AA;
+    border-color: #20B2AA;
+  }
+  75% {
+    box-shadow: 0 0 10px 4px #FFDEAD;
+    border-color: #FFDEAD;
+  }
+  100% {
+    box-shadow: 0 0 10px 4px #00ff00;
+    border-color: #00ff00;
+  }
+`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 90%;
+  background: #333;
+  color: #f2f2f2;
+  max-width: 75%;
   margin: 10px auto;
-  padding: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: ${rotateAnimation} 2s linear infinite;
 
   @media (min-width: 768px) {
-    max-width: 600px;
-    padding: 20px;
+    max-width: 70%;
+    padding: 30px;
   }
 `;
 
@@ -156,23 +185,6 @@ const Select = styled.select`
 
   @media (min-width: 768px) {
     padding: 8px;
-    font-size: 16px;
-  }
-`;
-
-const Button = styled.button`
-  padding: 8px;
-  font-size: 14px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-
-  @media (min-width: 768px) {
     font-size: 16px;
   }
 `;

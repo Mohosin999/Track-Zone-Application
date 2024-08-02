@@ -2,11 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useEvents from "../../hooks/useEvents";
-// import EventItem from "../shared/event-item";
-// import EventUpdateForm from "../shared/event-update-form";
-// import EventForm from "../shared/event-form";
 import EventListItem from "../event-list/event-list-item";
 import ActionButton from "../ui/action-button";
+import EmptyEvent from "../empty-component/EmptyEvent";
 
 const EventPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -71,7 +69,9 @@ const EventPage = () => {
       </Header>
 
       {filteredEvents.length === 0 ? (
-        <NoEventsMessage>No events available.</NoEventsMessage>
+        <div>
+          <EmptyEvent />
+        </div>
       ) : (
         <EventList>
           {filteredEvents.map((event) => (
@@ -119,6 +119,7 @@ const Header = styled.div`
 const Title = styled.h3`
   text-align: center;
   font-size: 20px;
+  color: #f2f2f2;
 
   @media (min-width: 768px) {
     font-size: 22px;
@@ -150,14 +151,15 @@ const ClearSearchButton = styled.button`
   right: 6px;
   top: 50%;
   transform: translateY(-50%);
-  background: #f4a460;
+  background: #ff4500;
+  color: #222;
   border: none;
   font-size: 14px;
   cursor: pointer;
   border-radius: 100%;
 
   &:hover {
-    background: #ff4500;
+    background: #f8db35;
     transition: 0.3s;
   }
 

@@ -129,7 +129,7 @@
 
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import InputField from "../../ui/input";
 import TextAreaField from "../../ui/textarea";
 import ActionButton from "../../ui/action-button";
@@ -242,13 +242,45 @@ EventForm.propTypes = {
   onDescriptionChange: PropTypes.func.isRequired,
 };
 
+// This is for animation around the form.
+const rotateAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 10px 4px #FFD700;
+    border-color: #FFD700;
+  }
+  25% {
+    box-shadow: 0 0 10px 4px #2E8B57;
+    border-color: #2E8B57;
+  }
+  50% {
+    box-shadow: 0 0 10px 4px #20B2AA;
+    border-color: #20B2AA;
+  }
+  75% {
+    box-shadow: 0 0 10px 4px #FFDEAD;
+    border-color: #FFDEAD;
+  }
+  100% {
+    box-shadow: 0 0 10px 4px #00ff00;
+    border-color: #00ff00;
+  }
+`;
+
 const FormContainer = styled.form`
-  background: #ffe4c4;
+  background: #333;
+  color: #f2f2f2;
+  max-width: 80%;
   padding: 20px;
-  border-radius: 5px;
-  margin-top: 6px;
-  margin-bottom: 20px;
-  animation: fadeIn 0.5s ease-in-out;
+  margin: 10px auto;
+  border-radius: 10px;
+  // margin-top: 6px;
+  // margin-bottom: 20px;
+  animation: ${rotateAnimation} 2s linear infinite;
+
+  @media (min-width: 768px) {
+    max-width: 73%;
+    padding: 30px;
+  }
 `;
 
 const FormInputSection = styled.div`

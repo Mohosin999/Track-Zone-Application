@@ -1,17 +1,20 @@
 import styled, { keyframes } from "styled-components";
 import ClockListItem from "./clock-list-item";
+import EmptyClock from "../empty-component/EmptyClock";
 
 const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
   return (
     <div>
-      <HeadingContainer>
-        <Heading>Your Others Clocks</Heading>
-      </HeadingContainer>
-
       {clocks.length === 0 ? (
-        <p>There is no clock, please create one</p>
+        <div>
+          <EmptyClock />
+        </div>
       ) : (
         <div>
+          <HeadingContainer>
+            <Heading>Your Others Clocks</Heading>
+          </HeadingContainer>
+
           {clocks.map((clock) => (
             <ClockListItem
               key={clock.id}
@@ -50,11 +53,12 @@ const Heading = styled.h3`
   font-size: 18px;
   margin: 10px 14px 0;
   display: inline-block;
+  color: #f2f2f2;
   white-space: nowrap;
   animation: ${slide} 10s infinite;
 
   @media (min-width: 768px) {
-    font-size: 20px;
+    font-size: 22px;
     margin: 20px 20px 0;
   }
 `;
