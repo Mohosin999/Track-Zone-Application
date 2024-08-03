@@ -5,6 +5,8 @@ import useEvents from "../../hooks/useEvents";
 import EventListItem from "../event-list/event-list-item";
 import ActionButton from "../ui/action-button";
 import EmptyEvent from "../empty-component/EmptyEvent";
+import PopupMessage from "../popup-message";
+import GoToTopButton from "../ui/go-to-top-button";
 
 const EventPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,17 +23,17 @@ const EventPage = () => {
 
   const handleUpdateEvent = (event) => {
     updateEvent(event);
-    showPopup("Event Updated!");
+    showPopup("Event Updated Successfully!");
   };
 
   const handleDeleteEvent = (id) => {
     deleteEvent(id);
-    showPopup("Event deleted!");
+    showPopup("Event deleted Successfully!");
   };
 
   const handleClearAll = () => {
     clearAllEvents();
-    showPopup("All events cleared!");
+    showPopup("All events cleared Successfully!");
   };
 
   const handleBack = () => {
@@ -87,13 +89,14 @@ const EventPage = () => {
       )}
 
       {popupMessage && (
-        <Popup>
-          <PopupContent>
-            <p>{popupMessage}</p>
-            <CloseButton onClick={() => setPopupMessage("")}>Close</CloseButton>
-          </PopupContent>
-        </Popup>
+        <PopupMessage
+          popupMessage={popupMessage}
+          setPopupMessage={setPopupMessage}
+        />
       )}
+
+      {/* Component for go to top from below */}
+      <GoToTopButton />
     </Container>
   );
 };
@@ -174,43 +177,9 @@ const ButtonGroup = styled.div`
   gap: 10px;
 `;
 
-const NoEventsMessage = styled.p`
-  text-align: center;
-`;
-
 const EventList = styled.ul`
   list-style: none;
   padding: 0;
-`;
-
-const Popup = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  border-radius: 10px;
-  z-index: 1000;
-`;
-
-const PopupContent = styled.div`
-  color: white;
-  text-align: center;
-`;
-
-const CloseButton = styled.button`
-  background: rgba(255, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 10px;
-
-  &:hover {
-    background: rgba(255, 0, 0, 0.7);
-  }
 `;
 
 export default EventPage;

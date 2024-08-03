@@ -1,9 +1,10 @@
 import { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import useEvents from "../../hooks/useEvents";
 import EventListItem from "./event-list-item";
 import EventActions from "../shared/event-actions";
 import EmptyEvent from "../empty-component/EmptyEvent";
+import PopupMessage from "../popup-message";
 
 const EventList = ({ clockId }) => {
   const [toggleEvent, setToggleEvent] = useState(true);
@@ -21,17 +22,17 @@ const EventList = ({ clockId }) => {
 
   const handleCreateEvent = (event) => {
     addEvent(event);
-    showPopup("New Event Created!");
+    showPopup("New Event Created Successfully!");
   };
 
   const handleUpdateEvent = (event) => {
     updateEvent(event);
-    showPopup("Event Updated!");
+    showPopup("Event Updated Successfully!");
   };
 
   const handleDeleteEvent = (id) => {
     deleteEvent(id);
-    showPopup("Event Deleted!");
+    showPopup("Event Deleted Successfully!");
   };
 
   return (
@@ -66,14 +67,10 @@ const EventList = ({ clockId }) => {
         )}
 
         {popupMessage && (
-          <Popup>
-            <PopupContent>
-              <p>{popupMessage}</p>
-              <CloseButton onClick={() => setPopupMessage("")}>
-                Close
-              </CloseButton>
-            </PopupContent>
-          </Popup>
+          <PopupMessage
+            popupMessage={popupMessage}
+            setPopupMessage={setPopupMessage}
+          />
         )}
       </ul>
     </div>
@@ -85,36 +82,6 @@ const ButtonsPosition = styled.div`
 
   @media (min-width: 768px) {
     margin: 30px 80px;
-  }
-`;
-
-const Popup = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  border-radius: 10px;
-  z-index: 1000;
-`;
-
-const PopupContent = styled.div`
-  color: white;
-  text-align: center;
-`;
-
-const CloseButton = styled.button`
-  background: rgba(255, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 10px;
-
-  &:hover {
-    background: rgba(255, 0, 0, 0.7);
   }
 `;
 

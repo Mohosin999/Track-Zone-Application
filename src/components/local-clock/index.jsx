@@ -6,10 +6,13 @@ import useTimer from "../../hooks/useTimer";
 import ClockDisplay from "../shared/clock-display";
 import ClockActions from "../shared/clock-actions";
 import ClockForm from "../shared/clock-form";
+import PopupMessage from "../popup-message";
 
 const LocalClock = ({ clock, updateClock, createClock }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isCreateClock, setIsCreateClock] = useState(false);
+  // Sate for showing popup message
+  const [popupMessage, setPopupMessage] = useState("");
 
   const { date, timezone, offset } = useClock(clock.timezone, clock.offset);
 
@@ -24,8 +27,20 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
     });
   }, [date]);
 
-  const handleClock = (values) => {
-    createClock(values); // State lifting
+  // Function to showing popup message after any action
+  const showPopup = (message) => {
+    setPopupMessage(message);
+    setTimeout(() => setPopupMessage(""), 3000);
+  };
+
+  const handleCreateClock = (values) => {
+    createClock(values);
+    showPopup("New Clock Created Successfully!");
+  };
+
+  const handleUpdateClock = (values) => {
+    updateClock(values);
+    showPopup("Clock Updated Successfully!");
   };
 
   const handleViewEvents = () => {
@@ -60,7 +75,7 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
       {isEdit && (
         <ClockForm
           values={clock}
-          handleClock={updateClock}
+          handleClock={handleUpdateClock}
           edit={true}
           title={!true}
           isEdit={isEdit}
@@ -70,9 +85,16 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
 
       {isCreateClock && (
         <ClockForm
-          handleClock={handleClock}
+          handleClock={handleCreateClock}
           isCreateClock={isCreateClock}
           setIsCreateClock={setIsCreateClock}
+        />
+      )}
+
+      {popupMessage && (
+        <PopupMessage
+          popupMessage={popupMessage}
+          setPopupMessage={setPopupMessage}
         />
       )}
     </>

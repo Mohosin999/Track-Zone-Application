@@ -79,3 +79,21 @@ const useEvents = () => {
 };
 
 export default useEvents;
+
+// const newEvent = {
+//   id: shortid.generate(),
+//   clockId,
+//   title,
+//   description,
+//   createdDate: new Date().toLocaleDateString("en-GB", {
+//     day: "2-digit",
+//     month: "long",
+//     year: "numeric",
+//   }), // Format: 25 August, 2024
+// };
+
+// const { id } = newEvent;
+// setState((prev) => ({
+//   ...prev,
+//   [`${clockId}|${id}`]: newEvent,
+// }));

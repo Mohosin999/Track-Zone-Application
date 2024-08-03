@@ -36,10 +36,10 @@ const GoToTopButton = () => {
 
 const Button = styled.button`
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  padding: 10px 20px;
-  font-size: 18px;
+  bottom: 20px;
+  right: 8px;
+  padding: 5px 8px;
+  font-size: 14px;
   background-color: #007bff;
   color: white;
   border: none;
@@ -49,7 +49,14 @@ const Button = styled.button`
   transition: opacity 0.3s, visibility 0.3s;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #00bfff;
+  }
+
+  @media (min-width: 768px) {
+    bottom: 30px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
   }
 `;
 

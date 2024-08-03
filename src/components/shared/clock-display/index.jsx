@@ -94,7 +94,7 @@ const ClockCircle = styled.div`
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: white;
+  background: #fff8dc;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,8 +1,28 @@
+import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import ClockListItem from "./clock-list-item";
 import EmptyClock from "../empty-component/EmptyClock";
+import PopupMessage from "../popup-message";
 
 const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
+  const [popupMessage, setPopupMessage] = useState("");
+
+  // Function to showing popup message after any action
+  const showPopup = (message) => {
+    setPopupMessage(message);
+    setTimeout(() => setPopupMessage(""), 3000);
+  };
+
+  const handleUpdateClock = (update) => {
+    updateClock(update);
+    showPopup("Clock Updated Successfully!");
+  };
+
+  const handleDeleteClock = (id) => {
+    deleteClock(id);
+    showPopup("Clock Deleted Successfully!");
+  };
+
   return (
     <div>
       {clocks.length === 0 ? (
@@ -19,12 +39,19 @@ const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
             <ClockListItem
               key={clock.id}
               clock={clock}
-              updateClock={updateClock}
-              deleteClock={deleteClock}
+              handleUpdateClock={handleUpdateClock}
+              handleDeleteClock={handleDeleteClock}
               localClock={localClock}
             />
           ))}
         </div>
+      )}
+
+      {popupMessage && (
+        <PopupMessage
+          popupMessage={popupMessage}
+          setPopupMessage={setPopupMessage}
+        />
       )}
     </div>
   );

@@ -80,12 +80,13 @@ const EventItemContainer = styled.li`
   color: #f2f2f2;
   padding: 12px 20px;
   border-radius: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   animation: ${fadeIn} 0.5s ease-in-out;
   flex-direction: column;
 
   @media (min-width: 768px) {
     padding: 20px 30px;
+    margin-bottom: 10px;
   }
 `;
 
