@@ -65,7 +65,11 @@ const EventPage = () => {
         </SearchWrapper>
 
         <ButtonGroup>
-          <ActionButton label="Clear All" onClick={handleClearAll} />
+          <ActionButton
+            label="Clear All"
+            onClick={handleClearAll}
+            disabled={allEvents.length === 0}
+          />
           <ActionButton label="Go Back" onClick={handleBack} />
         </ButtonGroup>
       </Header>
