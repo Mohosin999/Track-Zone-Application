@@ -65,10 +65,10 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
-  margin: 0 14px;
+  margin: 0 26px;
 
   @media (min-width: 768px) {
-    margin: 0 20px;
+    margin: 0 80px;
   }
 `;
 
@@ -76,15 +76,16 @@ const EventItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #afeeee;
-  padding: 12px;
+  background: #008080;
+  color: #f2f2f2;
+  padding: 12px 20px;
   border-radius: 5px;
   margin-bottom: 5px;
   animation: ${fadeIn} 0.5s ease-in-out;
   flex-direction: column;
 
   @media (min-width: 768px) {
-    padding: 20px;
+    padding: 20px 30px;
   }
 `;
 

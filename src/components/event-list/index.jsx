@@ -81,33 +81,10 @@ const EventList = ({ clockId }) => {
 };
 
 const ButtonsPosition = styled.div`
-  margin: 0 14px;
+  margin: 20px 26px;
 
   @media (min-width: 768px) {
-    margin: 0 20px;
-  }
-`;
-
-const pulse = keyframes`
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.04);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
-
-const EmptyEventTitle = styled.h3`
-  color: red;
-  margin: 0 10px;
-  text-align: center;
-  animation: ${pulse} 2s infinite;
-
-  @media (min-width: 768px) {
-    margin: 0 20px;
+    margin: 30px 80px;
   }
 `;
 

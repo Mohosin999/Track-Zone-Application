@@ -106,13 +106,14 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 14px;
   gap: 10px;
+  margin: 14px 20px;
+  padding-bottom: 10px;
 
   @media (min-width: 820px) {
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px;
+    margin: 20px 40px;
   }
 `;
 
@@ -151,15 +152,15 @@ const ClearSearchButton = styled.button`
   right: 6px;
   top: 50%;
   transform: translateY(-50%);
-  background: #ff4500;
-  color: #222;
+  background: #008080;
+  color: #f2f2f2;
   border: none;
   font-size: 14px;
   cursor: pointer;
   border-radius: 100%;
 
   &:hover {
-    background: #f8db35;
+    background: #20b2aa;
     transition: 0.3s;
   }
 

@@ -56,14 +56,14 @@ const ClockListItem = ({ clock, updateClock, deleteClock, localClock }) => {
 };
 
 const ClockItemCard = styled.div`
-  background: pink;
-  margin: 14px;
+  background: #333;
+  margin: 14px 26px;
   padding: 0 12px 10px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   @media (min-width: 768px) {
-    margin: 20px;
+    margin: 20px 80px;
     padding: 0 20px 20px;
   }
 `;

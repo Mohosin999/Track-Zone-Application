@@ -151,15 +151,14 @@ const Form = styled.form`
   gap: 20px;
   background: #333;
   color: #f2f2f2;
-  max-width: 75%;
+  max-width: 70%;
   margin: 10px auto;
   padding: 20px;
   border-radius: 10px;
-  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   animation: ${rotateAnimation} 2s linear infinite;
 
   @media (min-width: 768px) {
-    max-width: 70%;
+    max-width: 62.3%;
     padding: 30px;
   }
 `;
