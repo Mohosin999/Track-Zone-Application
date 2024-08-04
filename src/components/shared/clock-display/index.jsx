@@ -1,32 +1,3 @@
-// import { format } from "date-fns";
-
-// /**
-//  * ClockDisplay component displays a formatted date, title, timezone, and offset.
-//  *
-//  * @param {Date} date - The date to be displayed
-//  * @param {string} title - The title of the clock
-//  * @param {string} timezone - The timezone of the date
-//  * @param {number} offset - The offset from UTC in minutes
-//  *
-//  * @returns {JSX.Element} - The ClockDisplay component
-//  */
-// const ClockDisplay = ({ date, title, timezone, offset }) => {
-//   let offsetHr = offset / 60;
-
-//   return (
-//     <div>
-//       <h1>Title: {title}</h1>
-//       <h3>{format(date, "yyyy-MM-dd hh:mm:ss aaa")}</h3>
-//       <p>
-//         {timezone}
-//         {offsetHr > 0 ? `+${Math.abs(offsetHr)}` : `-${Math.abs(offsetHr)}`}
-//       </p>
-//     </div>
-//   );
-// };
-
-// export default ClockDisplay;
-
 import { format } from "date-fns";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -80,8 +51,7 @@ const ClockDisplayContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  // color: #ffa512;
-  color: yellow;
+  color: #ffd700;
   font-size: 22px;
   text-align: center;
   text-transform: capitalize;
@@ -93,10 +63,10 @@ const Title = styled.h1`
 `;
 
 const ClockCircle = styled.div`
+  background: #98FB98;
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: #fff8dc;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -21,19 +21,23 @@ const EventListItem = ({
       <EventItemContainer key={event.id}>
         <EventContent>
           <Title>{event.title}</Title>
-          <Paragraph>{event.description}</Paragraph>
+          <div style={{ textAlign: "left" }}>
+            <Paragraph>{event.description}</Paragraph>
+          </div>
         </EventContent>
 
         {/* Buttons */}
         <ActionsDiv>
-          <div>{`Created: ${createdDate}`}</div>
-          <EventActions
-            clockId={clockId}
-            event={event}
-            handleDeleteEvent={handleDeleteEvent}
-            isEdit={isEdit}
-            setIsEdit={setIsEdit}
-          />
+          <CreatedDate>{`Created: ${createdDate}`}</CreatedDate>
+          <EventActionsWrapper>
+            <EventActions
+              clockId={clockId}
+              event={event}
+              handleDeleteEvent={handleDeleteEvent}
+              isEdit={isEdit}
+              setIsEdit={setIsEdit}
+            />
+          </EventActionsWrapper>
         </ActionsDiv>
       </EventItemContainer>
 
@@ -53,9 +57,10 @@ const EventListItem = ({
 };
 
 EventListItem.propTypes = {
+  clockId: PropTypes.string.isRequired,
   event: PropTypes.object.isRequired,
-  onUpdate: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  handleUpdateEvent: PropTypes.func.isRequired,
+  handleDeleteEvent: PropTypes.func.isRequired,
 };
 
 const fadeIn = keyframes`
@@ -90,19 +95,37 @@ const EventItemContainer = styled.li`
   @media (min-width: 768px) {
     padding: 20px 30px;
     margin-bottom: 10px;
+    flex-direction: column;
   }
 `;
 
 const EventContent = styled.div`
-  text-align: left;
+  text-align: center;
   flex-grow: 1;
 `;
 
 const ActionsDiv = styled.div`
   display: flex;
-  gap: 10px;
-  margin-left: auto;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   margin-top: 10px;
+  flex-direction: row;
+`;
+
+const CreatedDate = styled.div`
+  color: #ffdead;
+  text-align: left;
+  font-size: 12px;
+  flex-grow: 1;
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
+const EventActionsWrapper = styled.div`
+  text-align: right;
 `;
 
 export default EventListItem;

@@ -146,10 +146,10 @@ const rotateAnimation = keyframes`
 
 const EventsButton = styled.p`
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
   text-decoration: none;
   cursor: pointer;
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -157,8 +157,8 @@ const EventsButton = styled.p`
   animation: ${rotateAnimation} 2s linear infinite;
 
   @media (min-width: 768px) {
-    font-size: 16px;
-    padding: 10px 20px;
+    font-size: 14px;
+    padding: 8px 22px;
   }
 `;
 

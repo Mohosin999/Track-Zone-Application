@@ -10,11 +10,16 @@ Title.propTypes = {
 };
 
 const StyledTitle = styled.h4`
-  color: #f2f2f2;
+  color: #afeeee;
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   text-transform: capitalize;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
 `;
 
 export default Title;

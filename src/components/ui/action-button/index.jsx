@@ -25,7 +25,7 @@ const Button = styled.button`
   border: none;
   font-size: 12px;
   font-weight: bold;
-  padding: 6px 20px;
+  padding: 6px 16px;
   cursor: pointer;
   border-radius: 5px;
 
@@ -41,7 +41,7 @@ const Button = styled.button`
 
   @media (min-width: 768px) {
     font-size: 14px;
-    padding: 10px 30px;
+    padding: 8px 22px;
   }
 `;
 
