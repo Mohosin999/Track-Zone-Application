@@ -80,9 +80,11 @@ const ClockDisplayContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #ffa512;
+  // color: #ffa512;
+  color: yellow;
   font-size: 22px;
   text-align: center;
+  text-transform: capitalize;
   margin: 0;
 
   @media (min-width: 768px) {

@@ -14,6 +14,8 @@ const EventListItem = ({
 }) => {
   const [isEdit, setIsEdit] = useState(false);
 
+  const createdDate = new Date().toLocaleDateString();
+
   return (
     <Container>
       <EventItemContainer key={event.id}>
@@ -24,6 +26,7 @@ const EventListItem = ({
 
         {/* Buttons */}
         <ActionsDiv>
+          <div>{`Created: ${createdDate}`}</div>
           <EventActions
             clockId={clockId}
             event={event}

@@ -13,6 +13,7 @@ const StyledTitle = styled.h4`
   color: #f2f2f2;
   margin: 0;
   font-size: 20px;
+  text-transform: capitalize;
   margin-bottom: 16px;
 `;
 
