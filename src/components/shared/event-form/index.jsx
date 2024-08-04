@@ -6,6 +6,19 @@ import TextAreaField from "../../ui/textarea";
 import ActionButton from "../../ui/action-button";
 import Title from "../../ui/title";
 
+/**
+ * EventForm component allows users to create or update an event.
+ *
+ * @param {string} clockId - clockId will be a string.
+ * @param {Object} event - event will be an object.
+ * @param {Function} handleCreateEvent - handleCreateEvent will be a function.
+ * @param {Function} handleUpdateEvent - handleUpdateEvent will be a function.
+ * @param {boolean} isEdit - isEdit will be a boolean.
+ * @param {Function} setIsEdit - setIsEdit will be a function.
+ * @param {boolean} isCreateEvent - isCreateEvent will be a boolean.
+ * @param {Function} setIsCreateEvent - setIsCreateEvent will be a function.
+ * @returns
+ */
 const EventForm = ({
   clockId,
   event,
@@ -144,8 +157,6 @@ const FormContainer = styled.form`
   padding: 20px;
   margin: 10px auto;
   border-radius: 10px;
-  // margin-top: 6px;
-  // margin-bottom: 20px;
   animation: ${rotateAnimation} 2s linear infinite;
 
   @media (min-width: 768px) {

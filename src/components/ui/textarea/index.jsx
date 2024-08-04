@@ -2,6 +2,17 @@ import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+/**
+ * TextAreaField component renders a resizable textarea input.
+ *
+ * @param {string} name - Name attribute of the textarea.
+ * @param {string} value - Current value of the textarea.
+ * @param {function} onChange - Function to handle change events.
+ * @param {string} placeholder - Placeholder text for the textarea.
+ * @param {boolean} required - Indicates if the textarea is required.
+ *
+ * This component automatically resizes its height based on the content.
+ */
 const TextAreaField = ({
   name = "",
   value,
@@ -11,6 +22,7 @@ const TextAreaField = ({
 }) => {
   const textareaRef = useRef(null);
 
+  // Adjust the height of the textarea based on its content
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
@@ -30,6 +42,7 @@ const TextAreaField = ({
   );
 };
 
+// Define prop types for the TextAreaField component
 TextAreaField.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -38,6 +51,7 @@ TextAreaField.propTypes = {
   required: PropTypes.bool,
 };
 
+// Styled component for the textarea
 const StyledTextarea = styled.textarea`
   display: block;
   width: 100%;

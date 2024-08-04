@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
+/**
+ * GoToTopButton component renders a button that becomes visible when
+ * the user scrolls down the page and allows the user to scroll back to the top.
+ */
 const GoToTopButton = () => {
   const [visible, setVisible] = useState(false);
 
+  /**
+   * Toggles the visibility of the button based on scroll position.
+   */
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
       setVisible(true);
@@ -12,6 +19,9 @@ const GoToTopButton = () => {
     }
   };
 
+  /**
+   * Smoothly scrolls the window to the top of the page.
+   */
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -19,6 +29,7 @@ const GoToTopButton = () => {
     });
   };
 
+  // Adds and cleans up the scroll event listener to toggle button visibility
   useEffect(() => {
     window.addEventListener("scroll", toggleVisibility);
     return () => window.removeEventListener("scroll", toggleVisibility);

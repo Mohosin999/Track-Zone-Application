@@ -1,44 +1,17 @@
-// import PropTypes from "prop-types";
-// import styled from "styled-components";
-
-// const InputField = ({ type, value, onChange, placeholder, required }) => {
-//   return (
-//     <StyledInput
-//       type={type}
-//       value={value}
-//       onChange={onChange}
-//       placeholder={placeholder}
-//       required={required}
-//     />
-//   );
-// };
-
-// InputField.propTypes = {
-//   type: PropTypes.string,
-//   value: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   placeholder: PropTypes.string,
-//   required: PropTypes.bool,
-// };
-
-// const StyledInput = styled.input`
-//   display: block;
-//   width: 100%;
-//   padding: 10px;
-//   margin: 10px 0;
-//   font-size: 20px;
-//   font-family: Oswald;
-//   line-height: 25px;
-//   border: 1px solid #ccc;
-//   border-radius: 5px;
-//   box-sizing: border-box;
-// `;
-
-// export default InputField;
-
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+/**
+ * InputField component renders a styled input field.
+ *
+ * @param {string} type - Type of the input (e.g., text, password, email).
+ * @param {string} name - Name attribute of the input.
+ * @param {string} value - Current value of the input.
+ * @param {function} onChange - Function to handle change events.
+ * @param {string} placeholder - Placeholder text for the input.
+ * @param {boolean} disabled - Indicates if the input is disabled.
+ * @param {boolean} required - Indicates if the input is required.
+ */
 const InputField = ({
   type,
   name = "",
@@ -61,6 +34,7 @@ const InputField = ({
   );
 };
 
+// Define prop types for the InputField component
 InputField.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
@@ -68,8 +42,10 @@ InputField.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
+// Styled component for the input
 const Input = styled.input`
   display: block;
   width: 100%;

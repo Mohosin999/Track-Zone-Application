@@ -1,20 +1,13 @@
 import { useState, useEffect } from "react";
 import { addMinutes } from "date-fns";
-
-const TIMEZONE_OFFSET = {
-  PST: -7 * 60,
-  EST: -4 * 60,
-  EDT: -4 * 60,
-  BST: 1 * 60,
-  MST: -6 * 60,
-};
+import { TIMEZONE_OFFSET } from "../constants/timezone";
 
 /**
- * A custom React hook that provides a real-time clock with timezone support.
+ * A custom hook that provides a real-time clock with timezone support.
  *
- * @param {string} timezone - The timezone to display the clock in. If not provided, the local timezone will be used.
- * @param {number} offset - The offset in minutes from UTC for the provided timezone. If not provided, it will be calculated based on the timezone.
- * @returns {Object} An object containing the current date, UTC date, offset, and timezone.
+ * @param {string} timezone
+ * @param {number} offset
+ * @returns {Object}
  */
 const useClock = (timezone, offset) => {
   const [localDate, setLocalDate] = useState(null);
@@ -25,7 +18,7 @@ const useClock = (timezone, offset) => {
   // Effect to initialize the UTC date and local timezone offset
   useEffect(() => {
     let d = new Date();
-    const lo = d.getTimezoneOffset();
+    const lo = d.getTimezoneOffset(); // Get local offset
     d = addMinutes(d, lo);
     setUtc(d);
     setLocalOffset(lo);
