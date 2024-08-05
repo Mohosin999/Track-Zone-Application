@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import useClock from "../../hooks/useClock";
@@ -8,6 +9,14 @@ import ClockActions from "../shared/clock-actions";
 import ClockForm from "../shared/clock-form";
 import PopupMessage from "../popup-message";
 
+/**
+ * LocalClock component displays the local clock with options to edit, create, and view events.
+ *
+ * @param {Object} clock - clock will be an object.
+ * @param {Function} updateClock - updateClock will be a function.
+ * @param {Function} createClock - createClock will be a function.
+ * @returns {JSX.Element}
+ */
 const LocalClock = ({ clock, updateClock, createClock }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isCreateClock, setIsCreateClock] = useState(false);
@@ -19,6 +28,7 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
   const timer = useTimer(date);
   const navigate = useNavigate();
 
+  // Effect to update state lifting function when date will be changed
   useEffect(() => {
     updateClock({
       date,
@@ -43,6 +53,7 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
     showPopup("Clock Updated Successfully!");
   };
 
+  // Function to go to events page
   const handleViewEvents = () => {
     navigate("/events");
   };
@@ -101,6 +112,14 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
   );
 };
 
+// Prop-types
+LocalClock.propTypes = {
+  clock: PropTypes.object.isRequired,
+  updateClock: PropTypes.func.isRequired,
+  createClock: PropTypes.func.isRequired,
+};
+
+// Styled components
 const LocalClockContainer = styled.div`
   position: relative;
   overflow: hidden;

@@ -12,6 +12,7 @@ const EmptyEvent = () => {
   );
 };
 
+// Styled components
 const EmptyEventContainer = styled.div`
   display: flex;
   flex-direction: column;

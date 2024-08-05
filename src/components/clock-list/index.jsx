@@ -1,9 +1,19 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 import ClockListItem from "./clock-list-item";
 import EmptyClock from "../empty-component/EmptyClock";
 import PopupMessage from "../popup-message";
 
+/**
+ * ClockList component displays a list of clocks with options to update or delete them.
+ *
+ * @param {Array} clocks - clocks will be an array of clock objects.
+ * @param {Function} updateClock - updateClock will be a function to handle clock updates.
+ * @param {Function} deleteClock - deleteClock will be a function to handle clock deletions.
+ * @param {boolean} localClock - localClock will be a boolean.
+ * @returns {JSX.Element}
+ */
 const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
   const [popupMessage, setPopupMessage] = useState("");
 
@@ -57,6 +67,15 @@ const ClockList = ({ clocks, updateClock, deleteClock, localClock }) => {
   );
 };
 
+// Prop-types
+ClockList.propTypes = {
+  clocks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  updateClock: PropTypes.func.isRequired,
+  deleteClock: PropTypes.func.isRequired,
+  localClock: PropTypes.bool.isRequired,
+};
+
+// Styled components
 const slide = keyframes`
   0% {
     transform: translateX(-50%);

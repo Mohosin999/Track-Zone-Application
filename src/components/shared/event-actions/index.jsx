@@ -1,8 +1,24 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import EventForm from "../event-form";
 import ActionButton from "../../ui/action-button";
 
+/**
+ * EventActions component provides action buttons for creating, editing, and deleting events.
+ *
+ * @param {string} clockId - clockId will be a string.
+ * @param {Object} event - event will be an object.
+ * @param {Function} handleCreateEvent - handleCreateEvent will be a function.
+ * @param {Function} handleDeleteEvent - handleDeleteEvent will be a function.
+ * @param {boolean} isEdit - isEdit will be a boolean.
+ * @param {Function} setIsEdit - setIsEdit will be a function.
+ * @param {boolean} toggleEvent - toggleEvent will be a boolean.
+ * @param {Function} setToggleEvent - setToggleEvent will be a function.
+ * @param {boolean} aboveEvent - aboveEvent will be a boolean.
+ * @param {boolean} disabled - disabled will be a boolean.
+ * @returns {JSX.Element}
+ */
 const EventActions = ({
   clockId,
   event,
@@ -57,6 +73,21 @@ const EventActions = ({
   );
 };
 
+// Prop-types
+EventActions.propTypes = {
+  clockId: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
+  handleCreateEvent: PropTypes.func.isRequired,
+  handleDeleteEvent: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool.isRequired,
+  setIsEdit: PropTypes.func.isRequired,
+  toggleEvent: PropTypes.bool.isRequired,
+  setToggleEvent: PropTypes.func.isRequired,
+  aboveEvent: PropTypes.bool,
+  disabled: PropTypes.bool,
+};
+
+// Styled components
 const ButtonGroup = styled.div`
   display: flex;
   gap: 5px;

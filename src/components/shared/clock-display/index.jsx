@@ -32,6 +32,7 @@ const ClockDisplay = ({ date, title, timezone, offset }) => {
   );
 };
 
+// Prop-types
 ClockDisplay.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
   title: PropTypes.string.isRequired,
@@ -39,6 +40,7 @@ ClockDisplay.propTypes = {
   offset: PropTypes.number.isRequired,
 };
 
+// Styled components
 const ClockDisplayContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,7 +65,7 @@ const Title = styled.h1`
 `;
 
 const ClockCircle = styled.div`
-  background: #98FB98;
+  background: #98fb98;
   width: 200px;
   height: 200px;
   border-radius: 50%;

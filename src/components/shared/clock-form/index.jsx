@@ -1,11 +1,24 @@
 import { useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
 import PropTypes from "prop-types";
+import styled, { keyframes } from "styled-components";
 import { TIMEZONE_OFFSET } from "../../../constants/timezone";
 import { getOffset } from "../../../utils/timezone";
 import InputField from "../../ui/input";
 import ActionButton from "../../ui/action-button";
 
+/**
+ * ClockForm component allows users to create or update a clock.
+ *
+ * @param {Object} values - values will be an object containing initial form values.
+ * @param {Function} handleClock - handleClock will be a function.
+ * @param {boolean} title - title will be a boolean indicating if the title field is enabled.
+ * @param {boolean} edit - edit will be a boolean indicating if the form is in edit mode.
+ * @param {boolean} isEdit - isEdit will be a boolean indicating if the form is in edit mode.
+ * @param {Function} setIsEdit - setIsEdit will be a function.
+ * @param {boolean} isCreateClock - isCreateClock will be a boolean indicating if a new clock is being created.
+ * @param {Function} setIsCreateClock - setIsCreateClock will be a function.
+ * @returns {JSX.Element}
+ */
 const ClockForm = ({
   values = { title: "", timezone: "UTC", offset: 0 },
   handleClock,
@@ -18,6 +31,7 @@ const ClockForm = ({
 }) => {
   const [formValues, setFormValues] = useState({ ...values });
 
+  // Effect to set offset while timezone will be changed
   useEffect(() => {
     if (TIMEZONE_OFFSET[formValues.timezone]) {
       setFormValues((prev) => ({
@@ -27,6 +41,7 @@ const ClockForm = ({
     }
   }, [formValues.timezone]);
 
+  // Function to handle all change
   const handleChange = (e) => {
     let { name, value } = e.target;
 
@@ -42,7 +57,9 @@ const ClockForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleClock(formValues);
+    handleClock(formValues); // State lifting function
+
+    // Logic to close or open form by clicking
     if (isEdit) {
       setIsEdit(!isEdit);
     }
@@ -83,6 +100,7 @@ const ClockForm = ({
         </Select>
       </FormField>
 
+      {/* Offset will show only for GMT and UTC timezone */}
       {(formValues.timezone === "GMT" || formValues.timezone === "UTC") && (
         <FormField>
           <Label htmlFor="offset">Enter Offset</Label>
@@ -117,8 +135,8 @@ ClockForm.propTypes = {
   edit: PropTypes.bool,
   isEdit: PropTypes.bool,
   setIsEdit: PropTypes.func,
-  isCreate: PropTypes.bool,
-  setIsCreate: PropTypes.func,
+  isCreateClock: PropTypes.bool,
+  setIsCreateClock: PropTypes.func,
 };
 
 // This is for animation around the form.

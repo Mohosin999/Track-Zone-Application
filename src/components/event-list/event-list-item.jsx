@@ -6,6 +6,15 @@ import EventForm from "../shared/event-form";
 import Title from "../ui/title";
 import Paragraph from "../ui/paragraph";
 
+/**
+ * EventListItem component renders an individual event with actions to edit or delete.
+ *
+ * @param {string} clockId - clockId will be a string.
+ * @param {Object} event - event will be an object.
+ * @param {Function} handleUpdateEvent - handleUpdateEvent will be a function.
+ * @param {Function} handleDeleteEvent - handleDeleteEvent will be a function.
+ * @returns {JSX.Element}
+ */
 const EventListItem = ({
   clockId,
   event,
@@ -13,7 +22,7 @@ const EventListItem = ({
   handleDeleteEvent,
 }) => {
   const [isEdit, setIsEdit] = useState(false);
-
+  // createdDate is to track the day when event is create
   const createdDate = new Date().toLocaleDateString();
 
   return (
@@ -56,6 +65,7 @@ const EventListItem = ({
   );
 };
 
+// Prop-types
 EventListItem.propTypes = {
   clockId: PropTypes.string.isRequired,
   event: PropTypes.object.isRequired,
@@ -63,6 +73,7 @@ EventListItem.propTypes = {
   handleDeleteEvent: PropTypes.func.isRequired,
 };
 
+// Styled components
 const fadeIn = keyframes`
   from {
     opacity: 0;

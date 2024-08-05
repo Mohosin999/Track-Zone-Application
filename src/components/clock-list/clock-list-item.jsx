@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { formatDistance } from "date-fns";
 import useClock from "../../hooks/useClock";
@@ -8,6 +9,15 @@ import ClockActions from "../shared/clock-actions";
 import EventList from "../event-list";
 import ClockForm from "../shared/clock-form";
 
+/**
+ * ClockListItem component displays a single clock with its details, actions, and associated events.
+ *
+ * @param {Object} clock - clock will be an object representing the clock details.
+ * @param {Function} handleUpdateClock - handleUpdateClock will be a function to handle clock updates.
+ * @param {Function} handleDeleteClock - handleDeleteClock will be a function to handle clock deletions.
+ * @param {boolean} localClock - localClock will be a boolean representing the local time.
+ * @returns {JSX.Element}
+ */
 const ClockListItem = ({
   clock,
   handleUpdateClock,
@@ -61,6 +71,20 @@ const ClockListItem = ({
   );
 };
 
+// Prop-types
+ClockListItem.propTypes = {
+  clock: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    timezone: PropTypes.string.isRequired,
+    offset: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  handleUpdateClock: PropTypes.func.isRequired,
+  handleDeleteClock: PropTypes.func.isRequired,
+  localClock: PropTypes.instanceOf(Date).isRequired,
+};
+
+// Styled components
 const ClockItemCard = styled.div`
   background: #333;
   margin: 14px 26px;

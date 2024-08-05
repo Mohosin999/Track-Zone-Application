@@ -1,5 +1,13 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
+/**
+ * PopupMessage component displays a popup with a message and a close button.
+ *
+ * @param {string} popupMessage - popupMessage will be a string.
+ * @param {Function} setPopupMessage - setPopupMessage will be a function.
+ * @returns {JSX.Element}
+ */
 const PopupMessage = ({ popupMessage, setPopupMessage }) => {
   return (
     <Popup>
@@ -11,6 +19,13 @@ const PopupMessage = ({ popupMessage, setPopupMessage }) => {
   );
 };
 
+// Prop-types
+PopupMessage.propTypes = {
+  popupMessage: PropTypes.string.isRequired,
+  setPopupMessage: PropTypes.func.isRequired,
+};
+
+// Styled components
 const Popup = styled.div`
   position: fixed;
   top: 50%;

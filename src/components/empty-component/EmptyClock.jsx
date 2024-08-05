@@ -12,6 +12,7 @@ const EmptyClock = () => {
   );
 };
 
+// Styled components
 const EmptyClockContainer = styled.div`
   display: flex;
   flex-direction: column;

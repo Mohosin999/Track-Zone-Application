@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import useEvents from "../../hooks/useEvents";
 import EventListItem from "./event-list-item";
@@ -6,12 +7,19 @@ import EventActions from "../shared/event-actions";
 import EmptyEvent from "../empty-component/EmptyEvent";
 import PopupMessage from "../popup-message";
 
+/**
+ * EventList component displays a list of events for a specific clock.
+ *
+ * @param {string} clockId - clockId will be a string.
+ * @returns {JSX.Element}
+ */
 const EventList = ({ clockId }) => {
   const [toggleEvent, setToggleEvent] = useState(true);
   const [popupMessage, setPopupMessage] = useState("");
 
   const { addEvent, deleteEvent, getEventsByClockId, updateEvent } =
     useEvents();
+  // Get events by a specific clock Id
   const events = getEventsByClockId(clockId);
 
   // Function to showing popup message after any action
@@ -77,6 +85,12 @@ const EventList = ({ clockId }) => {
   );
 };
 
+// Prop-types
+EventList.propTypes = {
+  clockId: PropTypes.string.isRequired,
+};
+
+// Styled components
 const ButtonsPosition = styled.div`
   margin: 20px 26px;
 

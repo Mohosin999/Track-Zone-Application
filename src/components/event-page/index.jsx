@@ -13,9 +13,10 @@ const EventPage = () => {
   const [popupMessage, setPopupMessage] = useState("");
 
   const { getEvents, deleteEvent, updateEvent, clearAllEvents } = useEvents();
-  const allEvents = getEvents(true);
+  const allEvents = getEvents(true); // get all events as an array
   const navigate = useNavigate();
 
+  // Function to show popup message after desire actions
   const showPopup = (message) => {
     setPopupMessage(message);
     setTimeout(() => setPopupMessage(""), 3000);
@@ -36,10 +37,12 @@ const EventPage = () => {
     showPopup("All events cleared Successfully!");
   };
 
+  // Function to go back in main page
   const handleBack = () => {
     navigate("/");
   };
 
+  // Search events using title or description
   const filteredEvents = allEvents.filter(
     (event) =>
       event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

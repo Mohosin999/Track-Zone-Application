@@ -17,7 +17,7 @@ import Title from "../../ui/title";
  * @param {Function} setIsEdit - setIsEdit will be a function.
  * @param {boolean} isCreateEvent - isCreateEvent will be a boolean.
  * @param {Function} setIsCreateEvent - setIsCreateEvent will be a function.
- * @returns
+ * @returns {JSX.Element}
  */
 const EventForm = ({
   clockId,
@@ -35,6 +35,7 @@ const EventForm = ({
     clockId: clockId,
   });
 
+  // Effect to update the state if event has value
   useEffect(() => {
     if (event) {
       setFormData({
@@ -46,6 +47,7 @@ const EventForm = ({
     }
   }, [event]);
 
+  // Function to update state at the time typing
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -54,6 +56,7 @@ const EventForm = ({
     }));
   };
 
+  // Function to manage task when submit
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -71,6 +74,7 @@ const EventForm = ({
       setIsCreateEvent(!isCreateEvent);
     }
 
+    // Form will be empty after submit
     setFormData({ title: "", description: "", clockId: clockId });
   };
 
@@ -118,12 +122,14 @@ const EventForm = ({
 };
 
 EventForm.propTypes = {
-  event: PropTypes.object.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  textareaRef: PropTypes.object.isRequired,
-  onTitleChange: PropTypes.func.isRequired,
-  onDescriptionChange: PropTypes.func.isRequired,
+  clockId: PropTypes.string.isRequired,
+  event: PropTypes.object,
+  handleCreateEvent: PropTypes.func.isRequired,
+  handleUpdateEvent: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool.isRequired,
+  setIsEdit: PropTypes.func.isRequired,
+  isCreateEvent: PropTypes.bool.isRequired,
+  setIsCreateEvent: PropTypes.func.isRequired,
 };
 
 // This is for animation around the form.
