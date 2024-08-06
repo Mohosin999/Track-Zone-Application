@@ -31,7 +31,7 @@ const Popup = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #00fa9a;
+  background: #fff8dc;
   padding: 15px;
   border-radius: 10px;
   z-index: 1000;

@@ -123,11 +123,14 @@ LocalClock.propTypes = {
 const LocalClockContainer = styled.div`
   position: relative;
   overflow: hidden;
-  background: red;
-  // background-image: url();
-  // background-size: cover;
-  // background-position: center;
-  // background-repeat: no-repeat;
+  background: linear-gradient(
+    45deg,
+    #8b0000,
+    #008080,
+    #008080,
+    #006400,
+    #000080
+  );
 `;
 
 const ButtonsArea = styled.div`
