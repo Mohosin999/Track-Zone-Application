@@ -8,6 +8,7 @@ import ClockDisplay from "../shared/clock-display";
 import ClockActions from "../shared/clock-actions";
 import ClockForm from "../shared/clock-form";
 import PopupMessage from "../popup-message";
+import Image from "../../../public/clock.jpg";
 
 /**
  * LocalClock component displays the local clock with options to edit, create, and view events.
@@ -123,10 +124,11 @@ LocalClock.propTypes = {
 const LocalClockContainer = styled.div`
   position: relative;
   overflow: hidden;
-  background-image: url("../../../public/clock.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: red;
+  // background-image: url();
+  // background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
 `;
 
 const ButtonsArea = styled.div`
