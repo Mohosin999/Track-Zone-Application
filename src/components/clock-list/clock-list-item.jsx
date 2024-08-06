@@ -87,7 +87,7 @@ ClockListItem.propTypes = {
 // Styled components
 const ClockItemCard = styled.div`
   background: #333;
-  margin: 14px 26px;
+  margin: 14px 15px;
   padding: 0 12px 6px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

@@ -31,7 +31,7 @@ const Popup = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #0000cd;
+  background: #00fa9a;
   padding: 15px;
   border-radius: 10px;
   z-index: 1000;
@@ -42,7 +42,7 @@ const Popup = styled.div`
 `;
 
 const PopupContent = styled.div`
-  color: #f2f2f2;
+  color: #333;
   text-align: center;
   font-size: 13px;
   font-weight: bold;

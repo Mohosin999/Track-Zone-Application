@@ -49,12 +49,12 @@ const Button = styled.button`
   position: fixed;
   bottom: 20px;
   right: 8px;
-  padding: 5px 8px;
+  padding: 8px 12px;
   font-size: 14px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   cursor: pointer;
   z-index: 1000;
   transition: opacity 0.3s, visibility 0.3s;

@@ -145,7 +145,7 @@ const SearchWrapper = styled.div`
 
 const SearchInput = styled.input`
   width: 100%;
-  padding: 4px 9px;
+  padding: 6px 9px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;

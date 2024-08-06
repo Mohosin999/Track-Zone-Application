@@ -84,7 +84,7 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
-  margin: 0 26px;
+  margin: 0 15px;
 
   @media (min-width: 768px) {
     margin: 0 80px;
