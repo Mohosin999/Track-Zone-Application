@@ -8,7 +8,6 @@ import ClockDisplay from "../shared/clock-display";
 import ClockActions from "../shared/clock-actions";
 import ClockForm from "../shared/clock-form";
 import PopupMessage from "../popup-message";
-import Image from "../../../public/clock.jpg";
 
 /**
  * LocalClock component displays the local clock with options to edit, create, and view events.
