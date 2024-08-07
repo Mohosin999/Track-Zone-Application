@@ -22,8 +22,6 @@ const EventListItem = ({
   handleDeleteEvent,
 }) => {
   const [isEdit, setIsEdit] = useState(false);
-  // createdDate is to track the day when event is create
-  const createdDate = new Date().toLocaleDateString();
 
   return (
     <Container>
@@ -37,7 +35,7 @@ const EventListItem = ({
 
         {/* Buttons */}
         <ActionsDiv>
-          <CreatedDate>{`Created: ${createdDate}`}</CreatedDate>
+          <CreatedDate>{event.createdDate}</CreatedDate>
           <EventActionsWrapper>
             <EventActions
               clockId={clockId}

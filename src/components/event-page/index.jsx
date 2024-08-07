@@ -52,7 +52,7 @@ const EventPage = () => {
   return (
     <Container>
       <Header>
-        <Title>All Events</Title>
+        <Title>All Events ({allEvents.length})</Title>
         <SearchWrapper>
           <SearchInput
             type="text"

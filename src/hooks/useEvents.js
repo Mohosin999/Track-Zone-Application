@@ -40,8 +40,17 @@ const useEvents = () => {
    * Add a new event
    * @param {Object} event - The event to add
    */
+  const formatDate = (date) => {
+    return date.toLocaleDateString("en-US", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
   const addEvent = (event) => {
     event.id = shortid.generate(); // First generate a Id into the event
+    event.createdDate = formatDate(new Date()); // Store the created date
     const { id, clockId } = event; // Destruction Id and clockId from the event
     setState((prev) => ({
       ...prev,
