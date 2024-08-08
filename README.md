@@ -1,8 +1,55 @@
-# React + Vite
+# 🕰️ Track Zone Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📚 Table of Contents
 
-Currently, two official plugins are available:
+- [Description](#-description)
+- [Features](#-features)
+- [Technology Stack](#-technology-stack)
+- [Setup and Installation](#-setup-and-installation)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📖 Description
+
+Track Zone application features a default local clock, which can be edited for timezone and offset but not the title. Users can create multiple clocks and add numerous events to each clock. Editing and deleting both clocks and events is supported.
+
+A separate event page allows users to view all created events and search for specific events using titles or descriptions. Additionally, there are "Clear All" and "Back" buttons for convenience. Here used local storage as a database.
+
+## 🔆 Features
+
+- User can create multiple clocks
+- User can edit or delete clock
+- User can create numerous events to each clock
+- User can edit or delete event
+- User can search for a specific event via title or description
+- User can delete all events from event page
+
+## 💻 Technology Stack
+
+- React
+- Styled-components
+- PropTypes
+
+## 🚀 Setup and Installation
+
+Follow these steps to set up the Track Zone Application on your local machine:
+
+### 1. `Clone the Repository:`
+
+```
+https://github.com/Mohosin999/Track-Zone-Application.git
+```
+
+### 2. `Navigate to the Project Directory:`
+
+Go to your project directory that your already created.
+
+```
+cd your-repo
+```
+
+### 3. `Install Dependencies:`
+
+Install all dependencies by typing this in your terminal.
+
+```
+npm install
+```
